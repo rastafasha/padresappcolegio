@@ -10,10 +10,16 @@ import { UserService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario.model';
 import { PaymentmethodService } from '../../../services/paymentmethod.service';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { LoadingComponent } from '../../../shared/loading/loading.component';
+import { HeaderComponent } from '../../../shared/header/header.component';
+import { MenuFooterComponent } from '../../../shared/menu-footer/menu-footer.component';
 
 @Component({
   selector: 'app-pagar',
-  imports:[CommonModule, NgIf, NgFor, FormsModule,ReactiveFormsModule],
+  imports:[CommonModule, NgIf, NgFor, FormsModule,ReactiveFormsModule, 
+    HeaderComponent,
+    MenuFooterComponent
+  ],
   templateUrl: './pagar.component.html',
   styleUrls: ['./pagar.component.css'],
 })

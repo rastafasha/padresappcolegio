@@ -20,11 +20,11 @@ import { Parent } from '../../models/parents';
     HeaderComponent, 
     MenuFooterComponent,
     AvisoComponent, 
-    ListProductsComponent,
     LateralComponent,
     CommonModule, 
     BackButtnComponent, 
-    ListaUsuariosComponent,
+    // ListProductsComponent,
+    // ListaUsuariosComponent,
     TranslateModule
   ],
   providers: [TranslateService],

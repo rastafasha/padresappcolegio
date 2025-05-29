@@ -1,17 +1,17 @@
+<app-header></app-header>
 <div class="row animated fadeIn fast" *ngIf="cargando">
     <!-- <app-loading ></app-loading> -->
 </div>
-<div *ngIf="!cargando" class="container animated fadeInUp" style="padding-top: 20px;">
+<div  class="container user animated fadeInUp" style="padding-top: 20px;">
     <!-- <app-backButtn></app-backButtn> -->
     <div class="row">
         <div class="col-12">
             <div class="card recibo">
                 <h3 class="text-center">Recibo de Cobro</h3>
                 <div class="pt-3">
-                    <p><b>Especialidad:</b> {{appointment.speciality.name}}</p>
-                    <p><b>Doctor:</b> {{appointment.doctor.full_name}}</p>
+                    <!-- <p><b>Doctor:</b> {{appointment.doctor.full_name}}</p>
                     <p><b>Fecha de la Cita:</b> {{appointment.date_appointment_format}}</p>
-                    <p><b>Costo de la Cita:</b> ${{appointment.amount}}</p>
+                    <p><b>Costo de la Cita:</b> ${{appointment.amount}}</p> -->
                     <p><b>Monto Pendiente:</b> ${{deuda}}</p>
                 </div>
             </div>
@@ -236,3 +236,4 @@
     </div>
 </div>
  
+<app-menu-footer></app-menu-footer>

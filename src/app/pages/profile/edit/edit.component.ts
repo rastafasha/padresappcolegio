@@ -12,8 +12,8 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import Swal from 'sweetalert2';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { PaisService } from '../../../services/pais.service';
-import { Pais } from '../../../models/pais';
+import { ParentService } from '../../../services/parent-service.service';
+import { Parent } from '../../../models/parents';
 
 @Component({
   selector: 'app-edit',
@@ -24,7 +24,6 @@ import { Pais } from '../../../models/pais';
         BackButtnComponent,
         ReactiveFormsModule,
         FormsModule,
-        NgFor,
         LoadingComponent,
         TranslateModule
   ],
@@ -56,33 +55,20 @@ export class EditComponent {
   public user_id!: number;
   public roles!: [];
   public profile_id!: number;
-  public speciality_id!: number;
   public gender!: number;
 
     // public profile!: Profile;
-    public profile: Profile = new Profile();
-    public precios!: Precios;
-
+    public profile: Parent = new Parent();
     public perfilForm!: FormGroup;
-    public profileSeleccionado!: Profile;
+    public profileSeleccionado!: Parent;
 
-    public redessociales: any = [];
-    public tarifas: any = [];
-    description:any;
-    item_tarifa:any;
-    title:any;
-    url:any;
-    icono:any;
-    precio:number = 0;
-    cantidad:number = 0;
-    amount = 0;
 
     public FILE_AVATAR: any;
     public IMAGE_PREVISUALIZA: any = "assets/img/user-06.jpg";
     text_validation: any = null;
     iconoSeleccionado:any;
 
-    public paises :Pais[] = [];
+    // public paises :Pais[] = [];
 
     langs: string[] = [];
   public activeLang = 'es';
@@ -90,32 +76,11 @@ export class EditComponent {
   lang!:string;
     
 
-    public listIcons = [
-      { icon: 'fa fa-facebook', name: 'Facebook' },
-      { icon: 'fa fa-instagram', name: 'Instagram' },
-      { icon: 'fa fa-twitter', name: 'Twitter' },
-      { icon: 'fa fa-youtube', name: 'YouTube' },
-      { icon: 'fa fa-linkedin', name: 'LinkedIn' },
-      { icon: 'fa fa-github', name: 'Github' },
-      { icon: 'fa fa-whatsapp', name: 'Whatsapp' },
-      { icon: 'fa fa-skype', name: 'Skype' },
-      { icon: 'fa fa-pinterest', name: 'Pinterest' },
-      { icon: 'fa fa-twitch', name: 'Twitch' },
-      { icon: 'fa fa-telegram', name: 'Telegram' },
-      { icon: 'fa fa-discord', name: 'Discord' },
-      { icon: 'fa fa-reddit', name: 'Reddit' },
-      { icon: 'fa fa-medium', name: 'Medium' },
-      { icon: 'fa fa-snapchat', name: 'Snapchat' },
-      { icon: 'fa fa-yahoo', name: 'Yahoo' },
-      { icon: 'fa fa-steam', name: 'Steam' },
-    ]
-  
     constructor(
       private authService: AuthService,
       private activatedRoute: ActivatedRoute,
-      private profileService: ProfileService,
+      private parentService: ParentService,
       private fb: FormBuilder,
-      public paisService: PaisService,
       private translate: TranslateService,
     ) {
       this.user = this.authService.getUser();
@@ -125,42 +90,25 @@ export class EditComponent {
 
     ngOnInit(): void {
       window.scrollTo(0,0);
-      // this.closeMenu();
       this.user_id = this.user.id;
       this.validarFormularioPerfil();
-      
-      // this.getSpecialitys();
-      this.getPaisesList();
       this.activatedRoute.params.subscribe( ({id}) => this.iniciarFormularioPerfil(id));
       this.Title = this.user.username;
       
     }
 
-    getPaisesList(): void {
-      this.paisService.getPaises().subscribe(
-        (res:any) =>{
-          this.paises = res.paises;
-          console.log(res);
-        }
-      );
-    }
 
     getProfile(){
       this.isLoading = true;
       this.loadingTitle = 'Cargando perfil';
-      this.profileService.getByClient(this.user.id).subscribe(
+      this.parentService.getUserById(this.user.id).subscribe(
         (resp:any) => {
           // console.log('Profile response:', resp); // Log the response
-          this.profile = resp.profile;
-          this.redessociales = typeof resp.profile.redessociales === 'string' 
-            ? JSON.parse(resp.profile.redessociales) || []
-            : resp.profile.redessociales || [];
-          this.tarifas = typeof resp.profile.precios === 'string'
-            ? JSON.parse(resp.profile.precios) || []
-            : resp.profile.precios || [];
-          this.profile_id = resp.profile.id;
-          this.IMAGE_PREVISUALIZA = resp.profile.avatar;
-          this.FILE_AVATAR = resp.profile.avatar;
+          this.profile = resp.representante;
+         
+          this.profile_id = resp.representante.id;
+          this.IMAGE_PREVISUALIZA = resp.representante.avatar;
+          this.FILE_AVATAR = resp.representante.avatar;
           // this.gender = resp.profile.gender
           this.isLoading = false;
         },
@@ -172,30 +120,24 @@ export class EditComponent {
 
 
 
-  iniciarFormularioPerfil(id:string){
+  iniciarFormularioPerfil(id:number){
     if (!id == null || !id == undefined || id) {
-      this.profileService.getByClient(id).subscribe(
+      this.parentService.getUserById(id).subscribe(
         (res:any) => {
           this.userForm.patchValue({
             id: res.id,
-            nombre: res.profile.nombre,
-            surname: res.profile.surname,
-            
-            direccion: res.profile.direccion,
-            description: res.profile.description,
-            pais: res.profile.pais,
-            lang: res.profile.lang,
-            estado: res.profile.estado,
-            ciudad: res.profile.ciudad,
-            gender: res.profile.gender,
-            n_doc: res.profile.n_doc,
-            telhome: res.profile.telhome,
-            telmovil: res.profile.telmovil,
-            speciality_id: res.profile.speciality_id,
+            name: res.representante.name,
+            surname: res.representante.surname,
+            birt_date: res.representante.birt_date,
+            direccion: res.representante.direccion,
+            lang: res.representante.lang,
+            gender: res.representante.gender,
+            n_doc: res.representante.n_doc,
+            mobile: res.representante.mobile,
             usuario: this.user.id,
           });
-          this.profileSeleccionado = res.profile;
-          // console.log('profileSeleccionado',this.profileSeleccionado);
+          this.profileSeleccionado = res;
+          console.log('profileSeleccionado',this.profileSeleccionado);
           this.getProfile();
         }
 
@@ -210,81 +152,19 @@ export class EditComponent {
 
   validarFormularioPerfil(){
     this.userForm = this.fb.group({
-      nombre: ['', Validators.required],
+      name: ['', Validators.required],
       surname: ['', Validators.required],
-      pais: [''],
-      estado: [''],
-      ciudad: [''],
-      telhome: ['', Validators.required],
-      telmovil: ['', Validators.required],
-      speciality_id: ['', Validators.required],
+      mobile: ['', Validators.required],
+      telhome: [''],
       direccion: [''],
       n_doc: [''],
       lang: [''],
       gender: [''],
-      description: ['', Validators.required],
       usuario: [this.user.id],
       id: [''],
     });
   }
 
-
-  addRedSocial() {
-    if (this.title && this.url ) {
-      this.redessociales.push({
-        title: this.title,
-        url: this.url,
-        icono: this.icono,
-      });
-      this.title = '';
-      this.url = '';
-      this.icono = '';
-      
-    }
-  }
-
-  deletered(i:any){
-    this.redessociales.splice(i,1);
-    this.title = '';
-    this.url = '';
-    this.icono = '';
-    
-  }
-
-
-  addMedicamento() {
-    if (this.item_tarifa && this.precio > 0) {
-      this.tarifas.push({
-        item_tarifa: this.item_tarifa,
-        cantidad: this.cantidad+'',
-        precio: this.precio+''
-      });
-      this.item_tarifa = '';
-      this.precio = 0;
-      this.cantidad = 0;
-      this.amount = 0;
-      
-    }
-    this.amount = 0;
-    for (let i = 0; i < this.tarifas.length; i++) {
-      this.amount += parseFloat(this.tarifas[i].precio) * parseFloat(this.tarifas[i].cantidad);
-    }
-  }
-
-  deleteMedical(i:any){
-    this.tarifas.splice(i,1);
-    this.item_tarifa = '';
-    this.precio = 0;
-    this.amount = 0;
-    this.cantidad = 0;
-    
-    if(this.tarifas.length === 0){
-      this.item_tarifa = '';
-      this.precio = 0;
-      this.cantidad = 0;
-      this.amount = 0;
-    }
-  }
 
   loadFile($event: any) {
     if ($event.target.files[0].type.indexOf("image")) {
@@ -311,45 +191,19 @@ export class EditComponent {
   onUserSave(){
 
     const formData = new FormData();
-    formData.append("nombre", this.userForm.value.nombre);
+    formData.append("name", this.userForm.value.name);
     formData.append("surname", this.userForm.value.surname);
     // formData.append("usuario", this.user.id+'');
     formData.append("client_id", this.user.id+'');
-    formData.append("profile_id", this.profile_id+'');
     if (this.userForm.value.direccion) {
       formData.append("direccion", this.userForm.value.direccion);
       
     }
-    if (this.userForm.value.description) {
-      formData.append("description", this.userForm.value.description);
-      
-    }
-    if (this.userForm.value.pais) {
-      formData.append("pais", this.userForm.value.pais);
-      
-    }
     
-    if (this.userForm.value.estado) {
-      formData.append("estado", this.userForm.value.estado);
+    if (this.userForm.value.mobile) {
+      formData.append("mobile", this.userForm.value.mobile);
       
     }
-    if (this.userForm.value.ciudad) {
-      formData.append("ciudad", this.userForm.value.ciudad);
-      
-    }
-    if (this.userForm.value.telefono) {
-      formData.append("telefono", this.userForm.value.telefono);
-      
-    }
-    if (this.userForm.value.telhome) {
-      formData.append("telhome", this.userForm.value.telhome);
-      
-    }
-    if (this.userForm.value.celular) {
-      formData.append("celular", this.userForm.value.celular);
-      
-    }
-    
     if (this.userForm.value.n_doc) {
       formData.append("n_doc", this.userForm.value.n_doc);
       
@@ -358,20 +212,6 @@ export class EditComponent {
       formData.append("gender", this.userForm.value.gender);
       
     }
-    if (this.userForm.value.speciality_id) {
-      formData.append("speciality_id", this.userForm.value.speciality_id);
-      
-    }
-    if (this.redessociales) {
-      // formData.append("redessociales", this.redessociales);
-      formData.append("redessociales", JSON.stringify(this.redessociales));
-      
-    }
-    // if (this.tarifas) {
-    //   // formData.append("precios", this.tarifas);
-    //   formData.append("precios", JSON.stringify(this.tarifas));
-
-    // }
     if (this.FILE_AVATAR) {
       formData.append("imagen", this.FILE_AVATAR);
     }
@@ -379,23 +219,13 @@ export class EditComponent {
       formData.append("lang", this.FILE_AVATAR);
     }
 
-    if(this.profile_id){
-      this.profileService.updateProfile( formData, this.profile_id).subscribe((resp:any) => {
+    this.parentService.update( formData).subscribe((resp:any) => {
         console.log(resp);
         this.profileSeleccionado = resp;
         // this.router.navigate(['/profile']);
         Swal.fire('Exito!', 'Se ha actualizado la formData', 'success');
         this.ngOnInit();
       });
-    }else{
-      this.profileService.createProfile(formData).subscribe((resp:any) => {
-        console.log(resp);
-        this.profileSeleccionado = resp;
-        Swal.fire('Exito!', 'Se ha creado la data', 'success');
-        // this.router.navigate(['/profile']);
-        this.ngOnInit();
-        });
-    }
 
   }
 

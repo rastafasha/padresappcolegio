@@ -39,13 +39,14 @@
                         <th scope="col">Metodo</th>
                         <th scope="col">Status</th>
                         <th scope="col">Fecha | Hora</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let pago of payments ">
-                        <th scope="row"><a [routerLink]="['/dashboard/payment-detail', pago.id]">{{pago.referencia}}</a>
+                        <th scope="row"><a [routerLink]="['/payment-detail', pago.id]">{{pago.referencia}}</a>
                         </th>
-                        <!-- <th><a [routerLink]="['/dashboard/user/', pago.parent_id]">{{pago.parent_id}}</a></th> -->
+                        <!-- <th><a [routerLink]="['/user/', pago.parent_id]">{{pago.parent_id}}</a></th> -->
                         <td>{{pago.student_id}}</td>
                         <td>{{pago.metodo}}</td>
                         <td>{{pago.monto}}</td>
@@ -57,7 +58,11 @@
                             <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                         </td>
                         <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
-                        
+                        <td class="text-nowrap text-center">
+                            <button *ngIf="pago.status === 'PENDING' || pago.status === 'REJECTED'" type="button" class="btn btn-primary"[routerLink]="['/pagar']" >
+                                Pagar
+                            </button>
+                        </td>
                     </tr>
 
 
