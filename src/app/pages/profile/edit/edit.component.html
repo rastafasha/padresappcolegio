@@ -178,14 +178,14 @@
                                       <!-- Dirección -->
                                       <div class="col-12  col-sm-6">
                                         <label for="validationCustom02" class="form-label ">{{'formulario.Address'|translate}}</label>
-                                        <textarea formControlName="direccion" class="form-control" id="validationCustom02"  required></textarea>
-                                        @if(userForm.controls['direccion'].touched){
+                                        <textarea formControlName="address" class="form-control" id="validationCustom02"  required></textarea>
+                                        @if(userForm.controls['address'].touched){
                           
                                             <div class="text-danger">
-                                              @if(userForm.controls['direccion'].errors?.['required']){
+                                              @if(userForm.controls['address'].errors?.['required']){
                                                   <span >{{'formulario.Field Required'|translate}}</span>
                                               }
-                                              @if(userForm.controls['direccion'].errors?.['minlength']){
+                                              @if(userForm.controls['address'].errors?.['minlength']){
                                                   <span >{{'formulario.3 Charecters Minimal'|translate}}</span>
                                               }
                                             </div>

@@ -109,7 +109,7 @@ export class EditComponent {
           this.profile_id = resp.representante.id;
           this.IMAGE_PREVISUALIZA = resp.representante.avatar;
           this.FILE_AVATAR = resp.representante.avatar;
-          // this.gender = resp.profile.gender
+          this.gender = resp.representante.gender
           this.isLoading = false;
         },
         (error) => {
@@ -129,7 +129,7 @@ export class EditComponent {
             name: res.representante.name,
             surname: res.representante.surname,
             birt_date: res.representante.birt_date,
-            direccion: res.representante.direccion,
+            address: res.representante.address,
             lang: res.representante.lang,
             gender: res.representante.gender,
             n_doc: res.representante.n_doc,
@@ -156,7 +156,7 @@ export class EditComponent {
       surname: ['', Validators.required],
       mobile: ['', Validators.required],
       telhome: [''],
-      direccion: [''],
+      address: [''],
       n_doc: [''],
       lang: [''],
       gender: [''],
@@ -194,9 +194,9 @@ export class EditComponent {
     formData.append("name", this.userForm.value.name);
     formData.append("surname", this.userForm.value.surname);
     // formData.append("usuario", this.user.id+'');
-    formData.append("client_id", this.user.id+'');
-    if (this.userForm.value.direccion) {
-      formData.append("direccion", this.userForm.value.direccion);
+    formData.append("parent_id", this.user.id+'');
+    if (this.userForm.value.address) {
+      formData.append("address", this.userForm.value.address);
       
     }
     
@@ -219,7 +219,7 @@ export class EditComponent {
       formData.append("lang", this.FILE_AVATAR);
     }
 
-    this.parentService.update( formData).subscribe((resp:any) => {
+    this.parentService.update( formData, this.user.id).subscribe((resp:any) => {
         console.log(resp);
         this.profileSeleccionado = resp;
         // this.router.navigate(['/profile']);

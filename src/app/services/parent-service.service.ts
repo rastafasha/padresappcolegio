@@ -67,10 +67,12 @@ export class ParentService {
     }
   
   
-    update(data: any) {
-      const url = `${baseUrl}/parent/update/${data.id}`;
-      return this.http.put(url, data, this.headers);
-    }
+    
+    update( data:any, parent_id:any,){
+        const headers = new HttpHeaders({'Authorization': 'Bearer'+this.authService.token})
+        const URL = baseUrl+'/parent/update/'+parent_id;
+        return this.http.post(URL,data,{headers:headers});
+      }
   
     deleteById(user:any): Observable<any> {
       const url = `${baseUrl}/parent/destroy/${user}`;
