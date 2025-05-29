@@ -7,6 +7,8 @@ import { Profile } from '../../models/profile.model';
 import { NgIf } from '@angular/common';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ParentService } from '../../services/parent-service.service';
+import { Parent } from '../../models/parents';
 
 @Component({
   selector: 'app-aviso',
@@ -15,32 +17,34 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './aviso.component.css'
 })
 export class AvisoComponent {
-  @Input() profile!: Profile;
-  @Input() user!:  Usuario;
+  @Input() user!:  Parent;
+  // @Input() profile!: Profile;
   user_id!: number;
   isLoading:boolean = false;
   isProfile:boolean = false;
-  // public profile: Profile = new Profile();
+  public profile: Parent = new Parent();
+
   constructor(
     private authService: AuthService,
     private profileService: ProfileService,
+    private parentService: ParentService,
   ) {
     this.user = this.authService.getUser();
   }
   ngOnInit() {
-    this.user_id = this.user.id;
     this.getProfile();
+    // console.log(this.user);
   }
   getProfile() {
     this.isLoading = true;
-    this.profileService.getByClient(this.user_id).subscribe({
+    this.parentService.getUserById(this.user.id).subscribe({
       next: (res) => {
-        this.profile = res.profile || null;
+        this.profile = res.representante || null;
         // console.log(this.profile);
         this.isLoading = false;
       },
       error: (err) => {
-        console.log(err);
+        // console.log(err);
         this.isLoading = false;
       }
     });

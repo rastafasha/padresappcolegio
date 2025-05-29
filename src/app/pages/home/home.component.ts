@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 import { ListaUsuariosComponent } from '../../components/ListaUsuarios/ListaUsuarios.component';
 import { Profile } from '../../models/profile.model';
 import { Router } from '@angular/router';
+import { Parent } from '../../models/parents';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   pageTitle = 'Home';
-  user!: Usuario;
+  user!: Parent;
   users: any = [];
   profile: Profile = new Profile();
 

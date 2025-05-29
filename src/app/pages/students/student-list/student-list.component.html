@@ -1,3 +1,85 @@
 <app-header></app-header>
-<p>student-list works!</p>
+<div class="container user">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- buscador -->
+            <form class="form-horizontal">
+                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                    <div class="input-group">
+                        <input type="search" name="search" type="text" class="form-control col-xs-12"
+                            placeholder="Buscar.." [(ngModel)]="query" aria-describedby="button-addon1"
+                            class="form-control border-0 bg-light">
+                        <div class="input-group-append">
+                            <button id="button-addon1" type="submit" class="btn btn-link text-primary"
+                                (click)="search()" name="submit" data-toggle="tooltip" title="mostrar todos"><i
+                                    class="fa fa-search"></i></button>
+                            <a href="javascript:;" (click)="PageSize()" class="btn btn-primary doctor-refresh ms-2"><i
+                                    class="fa fa-refresh"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- buscador -->
+        </div>
+    </div>
+    <app-loading *ngIf="isLoading"></app-loading>
+    <div class="card recent-sales overflow-auto" *ngIf="!isLoading">
+
+        <div class="card-body">
+
+            <table [ngClass]="loading? 'table table-borderless datatable':'table table-borderless'">
+                <thead>
+                    <tr>
+                        <!-- <th>ID</th> -->
+                        <th>Nombre</th>
+                        <th>CI</th>
+                        <th>Género</th>
+                        <th>Nacimiento</th>
+                        <th>Grado</th>
+                        <th>Sección</th>
+                        <!-- <th>Option</th> -->
+                        <th class="text-nowrap">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let studentprofile of students  ; let i = index;">
+
+                        <!-- <td><a [routerLink]="['/dashboard/padre/detail/', studentprofile.id]">{{studentprofile.id}}</a></td> -->
+                        <td>{{studentprofile.name}} {{studentprofile.surname}} </td>
+                        <td>{{studentprofile.n_doc}} </td>
+                        <!-- <td>{{studentprofile.gender}} </td> -->
+                        <td>
+                            <span class="badge bg-primary" *ngIf="studentprofile.gender === 1">M</span>
+                            <span class="badge bg-danger" *ngIf="studentprofile.gender === 2">F</span>
+                        </td>
+                        <td>{{studentprofile.birth_date|date}} </td>
+                        <td>{{studentprofile.school_year}} </td>
+                        <td>{{studentprofile.section | uppercase}} </td>
+                        <td class="text-nowrap text-center">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#studentModal" (click)="openPaymentsModal(studentprofile)">
+                                Pagos
+                            </button>
+                        </td>
+
+                        <!-- Modal -->
+                        <app-listapaymentshijo [selectedStudentProfile]="selectedStudentProfile"></app-listapaymentshijo>
+                        
+                        <!-- Modal -->
+                    </tr>
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+    </div>
+
+   <!-- Button trigger modal -->
+
+
+
+
+</div>
 <app-menu-footer></app-menu-footer>

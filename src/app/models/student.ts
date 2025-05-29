@@ -9,7 +9,11 @@ export class Student {
     username: string = "";
     name: string = "";
     surname: string = "";
-    num_doc: string = "";
+    gender!: number;
+    n_doc!: number;
+    birth_date: string = "";
+    school_year: string = "";
+    section: string = "";
     email: string = "";
     password?: string = "";
     token: string = "";

@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="col-12">
+<div class="container user">
     <div class="card recent-sales overflow-auto">
 
         <div class="row">
@@ -57,15 +57,7 @@
                             <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                         </td>
                         <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
-                        <td>
-                            <select class="form-control form-select-solid fw-bolder" name="status"
-                                [(ngModel)]="pago.status" (change)="cambiarStatus(pago)" placeholder="status">
-                                <option value="">Seleccione</option>
-                                <option value="APPROVED">Aprobado</option>
-                                <option value="PENDING">Pendiente</option>
-                                <option value="REJECTED">Rechazado</option>
-                            </select>
-                        </td>
+                        
                     </tr>
 
 

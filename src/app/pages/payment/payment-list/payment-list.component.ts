@@ -12,6 +12,7 @@ import { ParentService } from '../../../services/parent-service.service';
 import { Usuario } from '../../../models/usuario.model';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-payment-list',
@@ -46,6 +47,7 @@ export class PaymentListComponent {
       private parentService: ParentService,
       private paymentService: PaymentService,
       private http: HttpClient,
+      private authService: AuthService,
       handler: HttpBackend
     ) {
       this.http = new HttpClient(handler);
@@ -53,9 +55,8 @@ export class PaymentListComponent {
   
   ngOnInit(): void {
       window.scrollTo(0, 0);
-      // console.log(this.userprofile);
-      // Removed call to getPayments here to avoid accessing userprofile before it's set
-      
+      this.userprofile = this.authService.getUser();
+      this.getPayments();
     }
 
     ngOnChanges(): void {

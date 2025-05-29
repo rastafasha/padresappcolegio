@@ -3,8 +3,8 @@ import { Student } from '../models/student';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { environment } from '../environments/environment';
 const baseUrl = environment.url_servicios;
 
 @Injectable({
@@ -12,11 +12,11 @@ const baseUrl = environment.url_servicios;
 })
 export class StudentService {
 
-  public user: Student;
-      public recientes: Student;
-      public identity: Student;
+  public user!: Student;
+      public recientes!: Student;
+      public identity!: Student;
       // public role: Role;
-      error:string;
+      error!:string;
     
       serverUrl = environment.url_servicios;
     
