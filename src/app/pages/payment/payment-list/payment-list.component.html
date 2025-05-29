@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- buscador -->
+                <form class="form-horizontal">
+                    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                        <div class="input-group">
+                            <input type="search" name="search" type="text" class="form-control col-xs-12"
+                                placeholder="Buscar.." [(ngModel)]="query" aria-describedby="button-addon1"
+                                class="form-control border-0 bg-light">
+                            <div class="input-group-append">
+                                <button id="button-addon1" type="submit" class="btn btn-link text-primary"
+                                    (click)="search()" name="submit" data-toggle="tooltip" title="mostrar todos"><i
+                                        class="fa fa-search"></i></button>
+                                <a href="javascript:;" (click)="PageSize()"
+                                    class="btn btn-primary doctor-refresh ms-2"><i class="fa fa-refresh"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- buscador -->
+            </div>
+        </div>
+        <app-loading *ngIf="isLoading"></app-loading>
+        <div class="card-body" *ngIf="!isLoading">
+            <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Transacciones <span>| Todas</span>
+            </h5>
+
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">Referencia</th>
+                        <!-- <th scope="col">Usuario</th> -->
+                        <th scope="col">Estudiante</th>
+                        <th scope="col">Monto </th>
+                        <th scope="col">Metodo</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Fecha | Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pago of payments ">
+                        <th scope="row"><a [routerLink]="['/dashboard/payment-detail', pago.id]">{{pago.referencia}}</a>
+                        </th>
+                        <!-- <th><a [routerLink]="['/dashboard/user/', pago.parent_id]">{{pago.parent_id}}</a></th> -->
+                        <td>{{pago.student_id}}</td>
+                        <td>{{pago.metodo}}</td>
+                        <td>{{pago.monto}}</td>
+
+                        <td>
+                            <span class="badge bg-success" *ngIf="pago.status === 'APPROVED'">Aprobado</span>
+                            <span class="badge bg-primary" *ngIf="pago.status === 'PENDING'">Pendiente</span>
+                            <span class="badge bg-danger" *ngIf="pago.status === 'REJECTED'">Rechazado</span>
+                            <!-- <span class="badge bg-success">{{pago.status}}</span> -->
+                        </td>
+                        <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
+                        <td>
+                            <select class="form-control form-select-solid fw-bolder" name="status"
+                                [(ngModel)]="pago.status" (change)="cambiarStatus(pago)" placeholder="status">
+                                <option value="">Seleccione</option>
+                                <option value="APPROVED">Aprobado</option>
+                                <option value="PENDING">Pendiente</option>
+                                <option value="REJECTED">Rechazado</option>
+                            </select>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<app-menu-footer></app-menu-footer>

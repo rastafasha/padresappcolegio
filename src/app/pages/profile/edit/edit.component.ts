@@ -5,18 +5,15 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { MenuFooterComponent } from '../../../shared/menu-footer/menu-footer.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Precios, Profile, RedesSociales } from '../../../models/profile.model';
-import { Speciality } from '../../../models/speciality.model';
 import { Usuario } from '../../../models/usuario.model';
 import { AuthService } from '../../../services/auth.service';
 import { ProfileService } from '../../../services/profile.service';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SpecialitiesService } from '../../../services/specialities.service';
 import Swal from 'sweetalert2';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PaisService } from '../../../services/pais.service';
 import { Pais } from '../../../models/pais';
-import { PlacesService } from '../../../services/places.service';
 
 @Component({
   selector: 'app-edit',
@@ -64,11 +61,7 @@ export class EditComponent {
 
     // public profile!: Profile;
     public profile: Profile = new Profile();
-    // public redessociales: RedesSociales[] = []; // Initialize as an empty array
     public precios!: Precios;
-    // public listIcons: Icons[] = [];
-    public speciality!: Speciality;
-    public specialities: Speciality [] = [];
 
     public perfilForm!: FormGroup;
     public profileSeleccionado!: Profile;
@@ -122,9 +115,7 @@ export class EditComponent {
       private activatedRoute: ActivatedRoute,
       private profileService: ProfileService,
       private fb: FormBuilder,
-      private specialityService: SpecialitiesService,
       public paisService: PaisService,
-      private placesServices: PlacesService,
       private translate: TranslateService,
     ) {
       this.user = this.authService.getUser();

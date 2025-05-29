@@ -1,0 +1,76 @@
+
+
+<app-header></app-header>
+<!-- =======| Main |======= -->
+<div class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
+
+    <div class="col-xs-12">
+        <div class="leftside">
+            <!-- Page Title -->
+            <div class="pagetitle">
+                <h1><i class="bx bxs-user-account"></i> {{title}}</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/dashboard/payments">Pagos</a></li>
+                        <li class="breadcrumb-item active">{{title}}</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- End Page Title -->
+        </div>
+        <div class="buton">
+            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)"
+                (click)="goBack()">Volver</button>
+        </div>
+        <div class="clear"></div>
+
+        <section class="section dashboard">
+            <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <select class="form-control form-select-solid fw-bolder" name="status" [(ngModel)]="payment.status"
+                        (change)="cambiarStatus(payment)" placeholder="status">
+                        <option value="">Seleccione</option>
+                        <option value="APPROVED">Aprobado</option>
+                        <option value="PENDING">Pendiente</option>
+                        <option value="REJECTED">Rechazado</option>
+                    </select>
+                    </div>
+                </div>
+            <div class="card pagodetail">
+                <div class="col-xs-12 col-sm-6">
+                    <p><b>Referencia:</b> {{payment.referencia}}</p>
+                    <p><b>Status:</b>
+                        <span class="badge bg-success" *ngIf="payment.status === 'APPROVED'">Aprobado</span>
+                        <span class="badge bg-primary" *ngIf="payment.status === 'PENDING'">Pendiente</span>
+                        <span class="badge bg-danger" *ngIf="payment.status === 'REJECTED'">Rechazado</span>
+                    </p>
+                    <p><b>Nombre de la cuenta:</b> {{payment.nombre}}</p>
+                    <p><b>email de la cuenta:</b> {{payment.email}}</p>
+                    <p><b>Fecha | Hora:</b> {{payment.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
+                    <p><b>Monto:</b> $ {{payment.monto}}</p>
+                    <p><b>Estudiante:</b> {{payment.student_id}}</p>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <!-- <p><b>Email:</b> {{pago.email}}</p> -->
+                    <p><b>Metodo de Pago:</b> {{payment.metodo}}</p>
+                    <div *ngIf="payment.bank_name">
+                        <p><b>Nombre del Banco:</b> {{payment.bank_name}}</p>
+                    </div>
+
+                    <!-- <p><b>Txn Id:</b> {{pago.}}</p> -->
+
+                    <!-- <img [src]="payment.image | imagenPipe: 'payments'" style="width:100%; padding: 10px;
+                border: 1px solid #ccc;
+                margin-top: 30px;" class="shadow" alt=""> -->
+                </div>
+                
+
+            </div>
+            
+
+        </section>
+    </div>
+</div>
+<!-- End #main-->
+<app-menu-footer></app-menu-footer>

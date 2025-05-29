@@ -8,7 +8,6 @@ import { ModalCondicionesComponent } from '../../components/modal-condiciones/mo
 import { NgIf } from '@angular/common';
 import { PwaNotifInstallerComponent } from '../../shared/pwa-notif-installer/pwa-notif-installer.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { PlacesService } from '../../services/places.service';
 declare const gapi: any;
 
 

@@ -222,23 +222,6 @@
                                             </div>
                                         </div>
                                       </div>
-                                    <!-- Especialidad -->
-                                      <div class="col-12 col-md-4 col-xl-4" *ngIf="user.roles[0] ==='MEMBER' && profile.status === 2">
-                                          <div class="input-group">
-                                            <!-- <label for="validationCustom04" class="form-label">{{'formulario.Speciality'|translate}}</label> -->
-                                            <span class="input-group-text " id="basic-addon1">
-                                                <i class="fa fa-anchor " aria-hidden="true"></i>
-                                            </span>
-                                            <select class="form-select" formControlName="speciality_id" id="validationCustom04"  required>
-                                              <!-- <option selected disabled value="">Seleccione...</option> -->
-                                              <option *ngFor="let data of specialities" [value]="data.id">{{data.title}}</option>
-                                            </select>
-                                        </div>
-    
-                                        <div class="invalid-feedback">
-                                            {{'formulario.pleaseSelec'|translate}}
-                                        </div>
-                                      </div>
                                       <!-- Dirección -->
                                       <div class="col-12  col-sm-6">
                                         <label for="validationCustom02" class="form-label ">{{'formulario.Address'|translate}}</label>

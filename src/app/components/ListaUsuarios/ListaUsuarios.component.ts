@@ -1,11 +1,8 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component, HostListener, Input, TrackByFunction } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Profile } from '../../models/profile.model';
-import { Speciality } from '../../models/speciality.model';
 import { Usuario } from '../../models/usuario.model';
 import { AuthService } from '../../services/auth.service';
-import { SpecialitiesService } from '../../services/specialities.service';
 import { UserService } from '../../services/usuario.service';
 import { ProfileService } from '../../services/profile.service';
 import { ImagenPipe } from '../../pipes/imagen.pipe';
@@ -28,7 +25,6 @@ export class ListaUsuariosComponent {
     
 
     user: Usuario;
-    speciality!: Speciality;
     Title!: string;
 
     loadingTitle!: string ;
