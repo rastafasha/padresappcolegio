@@ -14,6 +14,7 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
+import { StudentService } from '../../../services/student-service.service';
 
 @Component({
   selector: 'app-payment-list',
@@ -41,12 +42,14 @@ export class PaymentListComponent {
     selectedValue!: any;
     msm_error!: string;
     query: string = '';
+    student!:Student;
   
     ServerUrl = environment.url_servicios;
   
     constructor(
       private parentService: ParentService,
       private paymentService: PaymentService,
+      private studentService: StudentService,
       private http: HttpClient,
       private authService: AuthService,
       handler: HttpBackend
@@ -77,6 +80,18 @@ export class PaymentListComponent {
         (res: any) => {
           this.payments = res;
           this.isLoading = false;
+          //recorremos payment para traer la info del studiante
+        if (this.payments) {
+          this.payments.forEach((payment: Payment) => {
+            if (payment.student_id !== undefined) {
+              this.studentService.getUserById(payment.student_id).subscribe((res: any) => {
+                this.student = res;
+                console.log(this.student);
+
+              });
+            }
+          });
+        }
         },
         (error) => {
           this.error = error;

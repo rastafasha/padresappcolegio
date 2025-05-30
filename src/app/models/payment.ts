@@ -1,4 +1,5 @@
 import { environment } from "../environments/environment";
+import { Student } from "./student";
 import { Usuario } from "./usuario.model";
 
 
@@ -10,6 +11,7 @@ export class Payment {
    user_id?:Usuario;
    parent_id?:number;
    student_id?:number;
+   student!:Student;
    metodo?:string;
    bank_name?:string;
    bank_destino?:string;
