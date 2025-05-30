@@ -37,16 +37,14 @@ export class PagarComponent implements OnInit {
 
   metodo!: string;
   usuario: Usuario;
-  user: any;
   error!: string;
   pago_id!: number;
   deuda: any;
   pagoSeleccionado!: Payment;
   paymentMethods!: PaymentMethod[]|null;
 
-  student_id: any;
-  patient_selected: any;
-  patient: any;
+  student_id!: number;
+  parent_id!: number;
   fecha!: Date;
   student!:Student;
 
@@ -75,7 +73,9 @@ export class PagarComponent implements OnInit {
       this.pago_id = resp.id;
     });
     
-    this.user = this.authService.user;
+    this.usuario = this.authService.user;
+
+    console.log(this.usuario);
     
     this.getInfoUser();
     this.getInfoCita();
@@ -126,11 +126,13 @@ export class PagarComponent implements OnInit {
       id: [''],
       metodo: ['', Validators.required],
       bank_name: [''],
+      bank_destino: ['',Validators.required],
       monto: ['', Validators.required],
       referencia: [''],
-      email: [this.user.email],
-      nombre: [this.user.name],
-      appointment_id: [''],
+      email: [this.usuario.email],
+      nombre: [this.usuario.name],
+      parent_id: [this.usuario.id],
+      student_id: [''],
       status: ['PENDING'],
       fecha: [''],
     });
@@ -142,6 +144,10 @@ export class PagarComponent implements OnInit {
     formData.append(
       'bank_name',
       this.PaymentRegisterForm.get('bank_name')?.value
+    );
+    formData.append(
+      'bank_destino',
+      this.PaymentRegisterForm.get('bank_destino')?.value
     );
     formData.append('monto', this.PaymentRegisterForm.get('monto')?.value);
     formData.append(
@@ -160,7 +166,7 @@ export class PagarComponent implements OnInit {
     const data = {
       ...this.PaymentRegisterForm.value,
       student_id: this.student_id,
-      pago_id: this.pago_id,
+      parent_id: this.usuario.id,
     };
     this.cargando = true;
     // Swal.fire('Procesando', `procesando Pago`, 'warning');
