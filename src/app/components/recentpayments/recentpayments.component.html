@@ -53,7 +53,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let pago of payments |slice:0:3 ">
-                                    <th scope="row"><a [routerLink]="['/dashboard/payment-detail', pago.id]">{{pago.referencia}}</a></th>
+                                    <th scope="row"><a [routerLink]="['/payment-detail', pago.id]">{{pago.referencia}}</a></th>
                                     <th>{{pago.student_id}}</th>
                                     <td>{{pago.bank_destino}}</td>
                                     <td>{{pago.metodo}}</td>

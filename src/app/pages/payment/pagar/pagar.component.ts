@@ -51,6 +51,9 @@ export class PagarComponent implements OnInit {
   precio_dia!:number;
   precio_fecha!:Date;
 
+  public FILE_AVATAR: any;
+    public IMAGE_PREVISUALIZA: any = "assets/img/user-06.jpg";
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -137,6 +140,18 @@ export class PagarComponent implements OnInit {
       fecha: [''],
     });
   }
+
+   loadFile($event: any) {
+    if ($event.target.files[0].type.indexOf("image")) {
+          this.text_validation = "Solamente pueden ser archivos de tipo imagen";
+          return;
+        }
+        this.text_validation = "";
+        this.FILE_AVATAR = $event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(this.FILE_AVATAR);
+        reader.onloadend = () => (this.IMAGE_PREVISUALIZA = reader.result);
+  }
   updateForm() {
 
     const formData = new FormData();
@@ -154,23 +169,21 @@ export class PagarComponent implements OnInit {
       'referencia',
       this.PaymentRegisterForm.get('referencia')?.value
     );
-    // formData.append('nombre', this.PaymentRegisterForm.get('nombre').value);
-    // formData.append('nombre',this.usuario.name);
-    // formData.append('email',this.user.email);
-    
-    
+    formData.append('student_id', this.student_id+'');
+    formData.append('parent_id', this.usuario.id+'');
+    formData.append('nombre', this.usuario.name);
+    formData.append('email', this.usuario.email);
+    formData.append('imagen', this.FILE_AVATAR);
+    // if (this.FILE_AVATAR) {
+    //   formData.append("imagen", this.FILE_AVATAR);
+    // }
     // formData.append('fecha', this.PaymentRegisterForm.get('fecha').value);
     formData.append('status', 'PENDING');
 
     //crear
-    const data = {
-      ...this.PaymentRegisterForm.value,
-      student_id: this.student_id,
-      parent_id: this.usuario.id,
-    };
     this.cargando = true;
     // Swal.fire('Procesando', `procesando Pago`, 'warning');
-    this.paymentService.create(data).subscribe((resp: any) => {
+    this.paymentService.create(formData).subscribe((resp: any) => {
       this.pagoSeleccionado = resp;
 
       // console.log(this.pagoSeleccionado);
@@ -219,4 +232,6 @@ export class PagarComponent implements OnInit {
       // console.log(res);
     });
   }
+
+
 }
