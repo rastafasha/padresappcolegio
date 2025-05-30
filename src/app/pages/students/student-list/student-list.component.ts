@@ -12,12 +12,13 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { ListapaymentshijoComponent } from '../../../components/listapaymentshijo/listapaymentshijo.component';
+import {  RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-student-list',
   imports: [HeaderComponent,MenuFooterComponent,
     CommonModule, NgFor,NgIf,LoadingComponent, ReactiveFormsModule, FormsModule,
-    ListapaymentshijoComponent
+    ListapaymentshijoComponent, RouterLink
   ],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.scss'

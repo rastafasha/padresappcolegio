@@ -20,7 +20,11 @@
                 </div>
             </form>
             <!-- buscador -->
+              <button type="button" class="btn btn-primary" [routerLink]="['/students/add']" >
+                                add
+                            </button>
         </div>
+        
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
     <div class="card recent-sales overflow-auto" *ngIf="!isLoading">

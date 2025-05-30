@@ -13,12 +13,16 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { MenuFooterComponent } from '../../../shared/menu-footer/menu-footer.component';
+import { StudentService } from '../../../services/student-service.service';
+import { Student } from '../../../models/student';
+import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
+import { TasabcvService } from '../../../services/tasabcv.service';
 
 @Component({
   selector: 'app-pagar',
   imports:[CommonModule, NgIf, NgFor, FormsModule,ReactiveFormsModule, 
     HeaderComponent,
-    MenuFooterComponent
+    MenuFooterComponent, BackButtnComponent
   ],
   templateUrl: './pagar.component.html',
   styleUrls: ['./pagar.component.css'],
@@ -27,7 +31,7 @@ export class PagarComponent implements OnInit {
   public PaymentRegisterForm!: FormGroup;
   public cargando: boolean = true;
   public cargandoPago: boolean = true;
-
+  pageTitle = 'Pagar';
   public text_validation: string = '';
   public text_success: string = '';
 
@@ -35,15 +39,19 @@ export class PagarComponent implements OnInit {
   usuario: Usuario;
   user: any;
   error!: string;
-  appointment_id: any;
-  appointment: any;
+  pago_id!: number;
   deuda: any;
   pagoSeleccionado!: Payment;
   paymentMethods!: PaymentMethod[]|null;
 
-  patient_id: any;
+  student_id: any;
   patient_selected: any;
   patient: any;
+  fecha!: Date;
+  student!:Student;
+
+  precio_dia!:number;
+  precio_fecha!:Date;
 
   constructor(
     private fb: FormBuilder,
@@ -52,7 +60,9 @@ export class PagarComponent implements OnInit {
     private paymentService: PaymentService,
     public authService: AuthService,
     public userService: UserService,
-    public paymentMethodService: PaymentmethodService
+    public paymentMethodService: PaymentmethodService,
+    public studentService:StudentService,
+    public tasaBcvService:TasabcvService
   ) {
     this.usuario = this.authService.user;
   }
@@ -62,7 +72,7 @@ export class PagarComponent implements OnInit {
     this.getTiposdepagos();
     this.activatedRoute.params.subscribe((resp: any) => {
       // console.log(resp);
-      this.appointment_id = resp.id;
+      this.pago_id = resp.id;
     });
     
     this.user = this.authService.user;
@@ -70,6 +80,7 @@ export class PagarComponent implements OnInit {
     this.getInfoUser();
     this.getInfoCita();
     this.validarFormulario();
+    this.getUltimoPrecioTasaBcv();
   }
 
   getInfoUser(){
@@ -79,17 +90,35 @@ export class PagarComponent implements OnInit {
     // })
   }
 
+  getUltimoPrecioTasaBcv(){
+    this.tasaBcvService.getTasas().subscribe((resp:any)=>{
+      this.precio_dia = resp[0].precio_dia
+      this.precio_fecha = resp[0].created_at
+
+      console.log(resp);
+    })
+  }
+
   getInfoCita() {
     this.cargando = true;
-    // this.appoitmentService
-    //   .showAppointment(this.appointment_id)
-    //   .subscribe((resp: any) => {
-    //     this.cargando = false;
-    //     // console.log(resp);
-    //     this.appointment = resp.appointment;
-    //     this.deuda = resp.deuda;
-    //     this.patient_id = resp.appointment.patient_id;
-    //   });
+    this.paymentService
+      .getPagoById(this.pago_id)
+      .subscribe((resp: any) => {
+        this.cargando = false;
+        // console.log(resp);
+        this.deuda = resp.monto;
+        this.student_id = resp.student_id;
+        this.fecha = resp.fecha;
+        this.getStuden();
+      });
+  }
+  
+
+  getStuden(){
+    this.studentService.getUserById(this.student_id).subscribe((resp:any)=>{
+      console.log(resp);
+      this.student = resp.student;
+    })
   }
 
   validarFormulario() {
@@ -130,8 +159,8 @@ export class PagarComponent implements OnInit {
     //crear
     const data = {
       ...this.PaymentRegisterForm.value,
-      patient_id: this.patient_id,
-      appointment_id: this.appointment_id,
+      student_id: this.student_id,
+      pago_id: this.pago_id,
     };
     this.cargando = true;
     // Swal.fire('Procesando', `procesando Pago`, 'warning');

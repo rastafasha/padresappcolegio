@@ -59,7 +59,7 @@
                         </td>
                         <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
                         <td class="text-nowrap text-center">
-                            <button *ngIf="pago.status === 'PENDING' || pago.status === 'REJECTED'" type="button" class="btn btn-primary"[routerLink]="['/pagar']" >
+                            <button *ngIf="pago.status === 'PENDING' || pago.status === 'REJECTED'" type="button" class="btn btn-primary"[routerLink]="['/pagar/',pago.id]" >
                                 Pagar
                             </button>
                         </td>

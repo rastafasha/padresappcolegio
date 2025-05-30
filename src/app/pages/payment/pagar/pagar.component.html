@@ -2,24 +2,25 @@
 <div class="row animated fadeIn fast" *ngIf="cargando">
     <!-- <app-loading ></app-loading> -->
 </div>
-<div  class="container user animated fadeInUp" style="padding-top: 20px;">
-    <!-- <app-backButtn></app-backButtn> -->
+<div  class="container user animated fadeInUp" style="margin-top: 100px;"  >
+    <app-backButtn [pageTitle]="pageTitle"></app-backButtn>
+    
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-sm-6">
             <div class="card recibo">
                 <h3 class="text-center">Recibo de Cobro</h3>
                 <div class="pt-3">
-                    <!-- <p><b>Doctor:</b> {{appointment.doctor.full_name}}</p>
-                    <p><b>Fecha de la Cita:</b> {{appointment.date_appointment_format}}</p>
-                    <p><b>Costo de la Cita:</b> ${{appointment.amount}}</p> -->
+                    <p><b>Estudiante:</b> {{student.name}} {{student.surname}}</p>
+                    <p><b>Costo de la Cita:</b> ${{deuda}}</p>
+                    <p><b>Fecha:</b> {{fecha|date}}</p>
                     <p><b>Monto Pendiente:</b> ${{deuda}}</p>
+                    <p><b>Tasa BCV:</b> {{precio_dia|currency:'Bs.'}}</p>
+                    <p><b>Tasa BCV Fecha:</b> {{precio_fecha|date}}</p>
+                    <p><b>total a pagar:</b> {{deuda*precio_dia|currency:'Bs.'}}</p>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="row">
-       	<div class="col-12">
+       	<div class="col-12 col-sm-6">
             <div class="card">
                 <div class="pt-3">
                     <!--external Bordered Tabs -->
@@ -75,24 +76,21 @@
                                 <form class="form-horizontal form-material formPagar" (submit)="updateForm()" enctype="multipart/form-data" [formGroup]="PaymentRegisterForm">
                                     <div class="container">
         
-                                        <div class="col-xs-12 col-md-8 " style="float: left;">
-                                            <div class="formcompr">
-                                                <div *ngIf="!metodo" class="divinfo">
-                                                    <div class="container">
-                                                        <div class="col-xs-12 movil">
-                                                            <p class="text-center Bordered text-bold">
-                                                                Seleccione Su Método de Pago</p>
-                                                        </div>
-                                                    </div>
+                                        <div *ngIf="!metodo" class="divinfo">
+                                            <div class="container">
+                                                <div class="col-xs-12 movil">
+                                                    <p class="text-center Bordered text-bold">
+                                                        Seleccione Su Método de Pago</p>
                                                 </div>
-                                                <div class="div1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-8 " style="float: left;">
+                                            <div >
+                                                <div class="clear"></div>
+                                                <div class="div1" >
                                                     <div class="form-group ">
                                                         <label for="">Tipo De pago </label>
-                                                        <br>
-                                                        <!-- <div class="form-check chickd"    >
-                                                            <input class="form-check-input" formControlName="metodo" [checked]="metodo == 'paypal'" (click)="selectedTypeCoupon('paypal')"  type="radio" value="Paypal" id="radiotipo1">
-                                                            <label class="form-check-label" for="radiotipo1">Paypal</label>
-                                                        </div> -->
+                                                        
                                                         <div class="form-check chickd"   >
                                                             <input class="form-check-input" formControlName="metodo"  [checked]="metodo == 'Transferencia Dólares'" (click)="selectedTypeCoupon('Transferencia Dólares')"   type="radio" value="Transferencia Dólares" id="radiotipo2">
                                                             <label class="form-check-label" for="radiotipo2">Transferencia Dólares</label>
@@ -110,18 +108,6 @@
                                                 <!-- Transferencias -->
                                                 <div class="divform" *ngIf="metodo == 'Transferencia Dólares'|| metodo == 'Transferencia Bolívares'">
 
-                                                    <!-- <div class="datos"*ngFor="let pago of paymentMethods; let id = index">
-                                                        <p><b>{{pago.tipo | uppercase}}</b></p>
-                                                        <div class="clear"></div>
-                                                        <p><b>Método:</b> {{pago.tipo}}</p>
-                                                        <p *ngIf="pago.email"><b>Correo:</b> {{pago.email}}</p>
-                                                        <p *ngIf="pago.bankName"><b>Banco:</b> {{pago.bankName}}</p>
-                                                        <p *ngIf="pago.bankAccount"><b>No.Cuenta:</b> {{pago.bankAccount}}</p>
-                                                        <p *ngIf="pago.bankAccountType"><b>Tipo de Cuenta:</b> {{pago.bankAccountType}}</p>
-                                                        <p *ngIf="pago.ciorif"><b>No.Cuenta o Rif:</b> {{pago.ciorif}}</p>
-                                                        <p *ngIf="pago.telefono"><b>Teléfono:</b> {{pago.telefono}}</p>
-                                                        <p><b>Requerido:</b> referencia y/o foto</p>
-                                                    </div> -->
                                                     <div class="div2">
                                                         <div class="form-group ">
                                                             <label for="">Nombre Banco </label>
@@ -139,30 +125,17 @@
                                                             <label for="">Monto</label>
                                                             <input type="text" formControlName="monto" class="form-control">
                                                         </div>
-                                                        <div class="form-group " *ngIf="deuda">
+                                                        <div class="form-group " *ngIf="deuda && metodo==='Transferencia Dólares'">
                                                             <label for="">Monto</label>
                                                             <p>Colocar Monto a pagar: <b>{{deuda|currency}}</b></p>
                                                             <input type="text" formControlName="monto" class="form-control">
                                                         </div>
+                                                        <div class="form-group " *ngIf="deuda && metodo==='Transferencia Bolívares'">
+                                                            <label for="">Monto</label>
+                                                            <p>Colocar Monto a pagar: <b>{{deuda*100|currency:'Bs.'}}</b></p>
+                                                            <input type="text" formControlName="monto" class="form-control">
+                                                        </div>
                                                     </div>
-                                                    <!-- <div class="div7">
-                                                        <div class="form-group ">
-                                                            <label for="">Nombre y Apellido(en cuenta pagadora) </label>
-                                                            <input type="text" formControlName="nombre" class="form-control">
-                                                        </div>
-                                                    </div> -->
-                                                    <!-- <div class="div8">
-                                                        <div class="form-group ">
-                                                            <label for="">Email (en cuenta pagadora)</label>
-                                                            <input type="text" formControlName="email" class="form-control">
-                                                        </div>
-                                                    </div> -->
-                                                    <!-- <div class="div9">
-                                                        <div class="form-group ">
-                                                            <label for="">Fecha del Pago</label>
-                                                            <input type="date" formControlName="fecha" class="form-control">
-                                                        </div>
-                                                    </div> -->
                                                 </div>
                                                 <!-- pago movil -->
                                                 <div class="divform" *ngIf="metodo == 'pagomovil'">
@@ -178,30 +151,24 @@
                                                             <input type="text" formControlName="referencia" class="form-control">
                                                         </div>
                                                     </div>
-                                                    <div class="div3">
+                                                    <div class="div4">
                                                         <div class="form-group ">
                                                             <label for="">Num. Teléfono </label>
                                                             <input type="text" formControlName="phone" class="form-control">
                                                         </div>
                                                     </div>
-                                                    <div class="div4">
+                                                    <div class="div5">
                                                         <div class="form-group " *ngIf="!deuda">
                                                             <label for="">Monto</label>
                                                             <input type="text" formControlName="monto" class="form-control">
                                                         </div>
                                                         <div class="form-group " *ngIf="deuda">
                                                             <label for="">Monto</label>
-                                                            <p>Colocar Monto a pagar: {{deuda|currency}}</p>
+                                                            <p>Colocar Monto a pagar: {{deuda*100|currency:'Bs.'}}</p>
                                                             <input type="text" formControlName="monto" class="form-control">
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="div7">
-                                                        <div class="form-group ">
-                                                            <label for="">Nombre y Apellido(en cuenta pagadora) </label>
-                                                            <input type="text" formControlName="nombre" class="form-control">
-                                                        </div>
-                                                    </div> -->
-                                                    <div class="div9">
+                                                    <div class="div6">
                                                         <div class="form-group ">
                                                             <label for="">Fecha del Pago</label>
                                                             <input type="date" formControlName="fecha" class="form-control">

@@ -24,13 +24,14 @@ export const routes: Routes = [
     {path: 'profile/settings', component: SettingsComponent},
     {path: 'profile/edit/:id', component: EditComponent},
     
-    {path: 'pagar', component: PagarComponent},
+    {path: 'pagar/:id', component: PagarComponent},
     {path: 'payments', component: PaymentListComponent},
     {path: 'payment/:id', component: PaymentDetailComponent},
     {path: 'payment/edit/:id', component: PaymentEditComponent},
 
     {path: 'students', component: StudentListComponent},
     {path: 'students/:id', component: StudentDetailComponent},
+    {path: 'students/add', component: StudentEditComponent},
     {path: 'students/edit/:id', component: StudentEditComponent},
     
 
