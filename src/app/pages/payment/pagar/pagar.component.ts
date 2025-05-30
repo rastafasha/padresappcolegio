@@ -49,6 +49,7 @@ export class PagarComponent implements OnInit {
   student!:Student;
 
   precio_dia!:number;
+  matricula!:number;
   precio_fecha!:Date;
 
   public FILE_AVATAR: any;
@@ -121,6 +122,7 @@ export class PagarComponent implements OnInit {
     this.studentService.getUserById(this.student_id).subscribe((resp:any)=>{
       console.log(resp);
       this.student = resp.student;
+      this.matricula = resp.student.matricula
     })
   }
 

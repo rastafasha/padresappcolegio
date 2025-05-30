@@ -11,12 +11,12 @@
                 <h3 class="text-center">Recibo de Cobro</h3>
                 <div class="pt-3">
                     <p><b>Estudiante:</b> {{student.name}} {{student.surname}}</p>
-                    <p><b>Costo de la Cita:</b> ${{deuda}}</p>
+                    <p><b>Matricula:</b> {{matricula|currency}}</p>
                     <p><b>Fecha:</b> {{fecha|date:'MMM d, y, h:mm:ss a'}}</p>
-                    <p><b>Monto Pendiente:</b> ${{deuda}}</p>
+                    <p><b>Monto Pendiente:</b> ${{matricula}}</p>
                     <p><b>Tasa BCV:</b> {{precio_dia|currency:'Bs.'}}</p>
                     <p><b>Tasa BCV Fecha:</b> {{precio_fecha|date:'MMM d, y, h:mm:ss a'}}</p>
-                    <p><b>total a pagar:</b> {{deuda*precio_dia|currency:'Bs.'}}</p>
+                    <p><b>total a pagar:</b> {{matricula*precio_dia|currency:'Bs.'}}</p>
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
                                                         <div class="form-group "
                                                             *ngIf="deuda && metodo==='Transferencia Dólares'">
                                                             <label for="">Monto</label>
-                                                            <p>Colocar Monto a pagar: <b>{{deuda|currency}}</b></p>
+                                                            <p>Colocar Monto a pagar: <b>{{matricula|currency}}</b></p>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
                                                         </div>
@@ -178,7 +178,7 @@
                                                             *ngIf="deuda && metodo==='Transferencia Bolívares'">
                                                             <label for="">Monto</label>
                                                             <p>Colocar Monto a pagar:
-                                                                <b>{{deuda*precio_dia|currency:'Bs.'}}</b>
+                                                                <b>{{matricula*precio_dia|currency:'Bs.'}}</b>
                                                             </p>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
@@ -217,7 +217,7 @@
                                                         <div class="form-group " *ngIf="deuda">
                                                             <label for="">Monto</label>
                                                             <p>Colocar Monto a pagar:
-                                                                {{deuda*precio_dia|currency:'Bs.'}}</p>
+                                                                {{matricula*precio_dia|currency:'Bs.'}}</p>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
                                                         </div>
