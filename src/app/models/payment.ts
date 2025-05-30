@@ -16,6 +16,9 @@ export class Payment {
    referencia?:string;
    telefono?:string;
    image?:string;
+   deuda?:string;
+   monto_pendiente?:string;
+   status_deuda?:string;
 
    fecha?:Date;
 

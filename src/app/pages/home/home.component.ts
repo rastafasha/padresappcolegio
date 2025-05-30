@@ -13,20 +13,24 @@ import { ListaUsuariosComponent } from '../../components/ListaUsuarios/ListaUsua
 import { Profile } from '../../models/profile.model';
 import { Router } from '@angular/router';
 import { Parent } from '../../models/parents';
+import { TasabcvComponent } from "../../components/tasabcv/tasabcv.component";
+import { RecentpaymentsComponent } from '../../components/recentpayments/recentpayments.component';
 
 @Component({
   selector: 'app-home',
   imports: [
-    HeaderComponent, 
+    HeaderComponent,
     MenuFooterComponent,
-    AvisoComponent, 
+    AvisoComponent,
     LateralComponent,
-    CommonModule, 
-    BackButtnComponent, 
+    CommonModule,
+    BackButtnComponent,
     // ListProductsComponent,
     // ListaUsuariosComponent,
-    TranslateModule
-  ],
+    TranslateModule,
+    TasabcvComponent,
+    RecentpaymentsComponent
+],
   providers: [TranslateService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

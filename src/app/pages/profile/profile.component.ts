@@ -13,6 +13,8 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { ImagenPipe } from "../../pipes/imagen.pipe";
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { Parent } from '../../models/parents';
+import { ParentService } from '../../services/parent-service.service';
 
 @Component({
   imports: [
@@ -22,7 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MenuFooterComponent,
     LateralComponent,
     BackButtnComponent,
-    ImagenPipe,
+    // ImagenPipe,
     LoadingComponent,
     TranslateModule
 ],
@@ -36,12 +38,12 @@ export class ProfileComponent {
   public isLoading:boolean = false;
     loadingTitle!:string;
 
-  public profile: Profile = new Profile();
-  public redessociales: RedesSociales [] =[];
+  public profile: Parent = new Parent();
 
   constructor(
     private authService: AuthService,
     private profileService: ProfileService,
+    private parentService: ParentService,
   ) {
     this.user = this.authService.getUser();
   }
@@ -58,12 +60,9 @@ export class ProfileComponent {
   getProfile(){
     this.isLoading = true;
     this.loadingTitle = 'Loading Profile...';
-    this.profileService.getByClient(this.user.id).subscribe((resp:any) => {
+    this.parentService.getUserById(this.user.id).subscribe((resp:any) => {
       // console.log(resp);
-      this.profile = resp.profile || null;
-      this.redessociales = typeof resp.profile.redessociales === 'string' 
-            ? JSON.parse(resp.profile.redessociales) || []
-            : resp.profile.redessociales || [];
+      this.profile = resp.representante || null;
       this.isLoading = false;
       // this.getSpeciality();
       // setTimeout(() => {

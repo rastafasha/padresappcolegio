@@ -7,19 +7,20 @@ import { Payment } from '../../../models/payment';
 import { PaymentService } from '../../../services/payment.service';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { MenuFooterComponent } from '../../../shared/menu-footer/menu-footer.component';
+import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
 
 @Component({
   selector: 'app-payment-detail',
   imports: [
-    CommonModule, ReactiveFormsModule, FormsModule, RouterLink,
-    HeaderComponent, MenuFooterComponent
+    CommonModule, ReactiveFormsModule, FormsModule,
+    HeaderComponent, MenuFooterComponent,BackButtnComponent
   ],
   templateUrl: './payment-detail.component.html',
   styleUrl: './payment-detail.component.scss'
 })
 export class PaymentDetailComponent {
 
-  title = "Detalle Pago";
+  pageTitle = "Detalle Pago";
   payment!: Payment;
   error!: string;
 

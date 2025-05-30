@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{selectedStudentProfile.name}} {{selectedStudentProfile.surname}}</h5>
+<h5 class="modal-title" id="exampleModalLabel">{{selectedStudentProfile?.name}} {{selectedStudentProfile?.surname}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -49,6 +49,9 @@
                                         <th scope="col">Estudiante</th>
                                         <th scope="col">Monto </th>
                                         <th scope="col">Metodo</th>
+                                        <th scope="col">deuda</th>
+                                        <th scope="col">monto_pendiente</th>
+                                        <th scope="col">status_deuda</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Fecha | Hora</th>
                                     </tr>
@@ -62,8 +65,14 @@
                                         <!-- <th><a [routerLink]="['/dashboard/user/', pago.parent_id]">{{pago.parent_id}}</a></th> -->
                                         <td>{{pago.student_id}}</td>
                                         <td>{{pago.metodo}}</td>
-                                        <td>{{pago.monto}}</td>
-
+                                        <td>{{pago.monto|currency}}</td>
+                        <td>{{pago.deuda|currency}}</td>
+                        <td>{{pago.monto_pendiente|currency}}</td>
+                        <td>
+                                        <!-- {{pago.status_deuda}} -->
+                                        <span class="badge bg-success" *ngIf="pago.status_deuda !== 'DEUDA'">Pagado</span>
+                                        <span class="badge bg-danger" *ngIf="pago.status_deuda === 'DEUDA'">Deuda</span>
+                                    </td>
                                         <td>
                                             <span class="badge bg-success"
                                                 *ngIf="pago.status === 'APPROVED'">Aprobado</span>

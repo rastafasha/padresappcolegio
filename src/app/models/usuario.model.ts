@@ -5,7 +5,8 @@ const base_url = environment.url_media;
 export class Usuario {
   id!: number;
   // role_id: number = 3; // 3 = Rol miembro
-  username: string = "";
+  name: string = "";
+  surname: string = "";
   email: string = "";
   password?: string = "";
   first_name: string = "";

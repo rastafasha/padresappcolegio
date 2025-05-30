@@ -6,7 +6,6 @@ import { SettingsComponent } from './pages/profile/settings/settings.component';
 import { EditComponent } from './pages/profile/edit/edit.component';
 import { LoginComponent } from './auth/login/login.component';
 import { PaymentDetailComponent } from './pages/payment/payment-detail/payment-detail.component';
-import { PaymentEditComponent } from './pages/payment/payment-edit/payment-edit.component';
 import { StudentListComponent } from './pages/students/student-list/student-list.component';
 import { StudentDetailComponent } from './pages/students/student-detail/student-detail.component';
 import { StudentEditComponent } from './pages/students/student-edit/student-edit.component';
@@ -26,8 +25,7 @@ export const routes: Routes = [
     
     {path: 'pagar/:id', component: PagarComponent},
     {path: 'payments', component: PaymentListComponent},
-    {path: 'payment/:id', component: PaymentDetailComponent},
-    {path: 'payment/edit/:id', component: PaymentEditComponent},
+    {path: 'payment-detail/:id', component: PaymentDetailComponent},
 
     {path: 'students', component: StudentListComponent},
     {path: 'students/:id', component: StudentDetailComponent},

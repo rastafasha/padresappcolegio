@@ -1,0 +1,94 @@
+<!-- =======| Main |======= -->
+ <app-loading *ngIf="isLoading"></app-loading>
+<div  *ngIf="!isLoading" class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
+
+    <div class="col-xs-12">
+        <section class="section dashboard">
+            <!-- Recent Pagos -->
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- buscador -->
+                            <form class="form-horizontal">
+                                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                                    <div class="input-group">
+                                        <input type="search" name="search" type="text" class="form-control col-xs-12"
+                                            placeholder="Buscar.." [(ngModel)]="query" aria-describedby="button-addon1"
+                                            class="form-control border-0 bg-light">
+                                        <div class="input-group-append">
+                                            <button id="button-addon1" type="submit" class="btn btn-link text-primary"
+                                                (click)="search()" name="submit" data-toggle="tooltip" title="mostrar todos"><i
+                                                    class="fa fa-search"></i></button>
+                                            <a href="javascript:;" (click)="PageSize()"
+                                                class="btn btn-primary doctor-refresh ms-2"><i class="fa fa-refresh"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- buscador -->
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Transacciones Recientes
+                        </h5>
+
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Referencia</th>
+                                    <th scope="col">Hijo</th>
+                                    <th scope="col">Metodo</th>
+                                    <th scope="col">Monto </th>
+                                    <th scope="col">deuda</th>
+                                    <th scope="col">monto_pendiente</th>
+                                    <th scope="col">status_deuda</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Fecha | Hora</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pago of payments |slice:0:3 ">
+                                    <th scope="row"><a [routerLink]="['/dashboard/payment-detail', pago.id]">{{pago.referencia}}</a></th>
+                                    <th>{{pago.student_id}}</th>
+                                    <td>{{pago.metodo}}</td>
+                                    <td>{{pago.monto|currency}}</td>
+                                    <td>{{pago.deuda|currency}}</td>
+                                    <td>{{pago.monto_pendiente|currency}}</td>
+                                    <td>
+                                        <!-- {{pago.status_deuda}} -->
+                                        <span class="badge bg-success" *ngIf="pago.status_deuda !== 'DEUDA'">Pagado</span>
+                                        <span class="badge bg-danger" *ngIf="pago.status_deuda === 'DEUDA'">Deuda</span>
+                                    </td>
+                                    
+
+                                    <td>
+                                        <span class="badge bg-success" *ngIf="pago.status === 'APPROVED'">Aprobado</span>
+                                        <span class="badge bg-primary" *ngIf="pago.status === 'PENDING'">Pendiente</span>
+                                        <span class="badge bg-danger" *ngIf="pago.status === 'REJECTED'">Rechazado</span>
+                                        <!-- <span class="badge bg-success">{{pago.status}}</span> -->
+                                    </td>
+                                    <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
+                                    <td class="text-nowrap text-center">
+                            <button *ngIf="pago.status === 'PENDING' || pago.status === 'REJECTED'" type="button" class="btn btn-primary"[routerLink]="['/pagar/',pago.id]" >
+                                Pagar
+                            </button>
+                        </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- End Recent Pagos -->
+        </section>
+    </div>
+</div>
+<!-- End #main-->

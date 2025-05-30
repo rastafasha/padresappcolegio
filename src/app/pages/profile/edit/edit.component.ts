@@ -93,7 +93,7 @@ export class EditComponent {
       this.user_id = this.user.id;
       this.validarFormularioPerfil();
       this.activatedRoute.params.subscribe( ({id}) => this.iniciarFormularioPerfil(id));
-      this.Title = this.user.username;
+      this.Title = this.user.name;
       
     }
 
