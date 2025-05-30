@@ -14,11 +14,12 @@ import { AuthService } from '../../../services/auth.service';
 import { ListapaymentshijoComponent } from '../../../components/listapaymentshijo/listapaymentshijo.component';
 import {  RouterLink } from '@angular/router';
 import { ImagenPipe } from "../../../pipes/imagen.pipe";
+import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
 @Component({
   selector: 'app-student-list',
   imports: [HeaderComponent,MenuFooterComponent,
     CommonModule, NgFor,NgIf,LoadingComponent, ReactiveFormsModule, FormsModule,
-    ListapaymentshijoComponent, RouterLink, ImagenPipe
+    ListapaymentshijoComponent, RouterLink, ImagenPipe, BackButtnComponent
   ],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.scss'
@@ -26,7 +27,7 @@ import { ImagenPipe } from "../../../pipes/imagen.pipe";
 export class StudentListComponent {
     userprofile!: Parent;
     isLoading = false;
-    title = 'Padres';
+    pageTitle = 'Estudiantes';
   
     loading = false;
     usersCount = 0;

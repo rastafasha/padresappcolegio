@@ -13,19 +13,20 @@ import { Usuario } from '../../../models/usuario.model';
 import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
 
 @Component({
   selector: 'app-payment-list',
   imports: [MenuFooterComponent,HeaderComponent,
     FormsModule,ReactiveFormsModule, NgFor, NgIf, LoadingComponent,
-    RouterLink, CommonModule
+    RouterLink, CommonModule, BackButtnComponent
   ],
   templateUrl: './payment-list.component.html',
   styleUrl: './payment-list.component.scss'
 })
 export class PaymentListComponent {
 
-  title = 'Padres';
+  pageTitle = 'Pagos';
     isLoading = false;
     loading = false;
     usersCount = 0;

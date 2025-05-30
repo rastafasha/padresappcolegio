@@ -44,8 +44,8 @@ export class RecentpaymentsComponent {
 
   getPagos(): void {
     this.isLoading = true;
-    this.paymentService.getPagosbyUser(this.user.id).subscribe((res: any) => {
-      this.payments = res;
+    this.paymentService.getPagosPendingbyUser(this.user.id).subscribe((res: any) => {
+      this.payments = res.data;
       (error:any) => (this.error = error);
       this.isLoading = false;
       console.log(this.payments);

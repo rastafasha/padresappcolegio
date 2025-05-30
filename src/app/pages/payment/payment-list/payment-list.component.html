@@ -1,5 +1,6 @@
 <app-header></app-header>
 <div class="container user">
+    <app-backButtn [pageTitle]="pageTitle"></app-backButtn>
     <div class="card recent-sales overflow-auto">
 
         <div class="row">
@@ -24,6 +25,7 @@
                 <!-- buscador -->
             </div>
         </div>
+        
         <app-loading *ngIf="isLoading"></app-loading>
         <div class="card-body" *ngIf="!isLoading">
             <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Transacciones <span>| Todas</span>
