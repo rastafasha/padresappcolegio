@@ -78,9 +78,7 @@ export class PagarComponent implements OnInit {
     });
     
     this.usuario = this.authService.user;
-
-    console.log(this.usuario);
-    
+    // console.log(this.usuario);
     this.getInfoUser();
     this.getInfoCita();
     this.validarFormulario();
@@ -112,6 +110,7 @@ export class PagarComponent implements OnInit {
         // console.log(resp);
         this.deuda = resp.monto;
         this.student_id = resp.student_id;
+        this.parent_id = resp.parent_id;
         this.fecha = resp.fecha;
         this.getStuden();
       });
@@ -172,7 +171,7 @@ export class PagarComponent implements OnInit {
       this.PaymentRegisterForm.get('referencia')?.value
     );
     formData.append('student_id', this.student_id+'');
-    formData.append('parent_id', this.usuario.id+'');
+    formData.append('parent_id', this.parent_id+'');
     formData.append('nombre', this.usuario.name);
     formData.append('email', this.usuario.email);
     formData.append('imagen', this.FILE_AVATAR);
