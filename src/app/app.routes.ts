@@ -29,8 +29,8 @@ export const routes: Routes = [
 
     {path: 'students', component: StudentListComponent},
     {path: 'students/:id', component: StudentDetailComponent},
-    {path: 'students/add', component: StudentEditComponent},
-    {path: 'students/edit/:id', component: StudentEditComponent},
+    {path: 'student/add', component: StudentEditComponent},
+    {path: 'student/edit/:id', component: StudentEditComponent},
     
 
     {path: '**', redirectTo: '', pathMatch: 'full'},

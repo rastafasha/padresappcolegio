@@ -8,9 +8,6 @@ import { BackButtnComponent } from '../../shared/backButtn/backButtn.component';
 import { AuthService } from '../../services/auth.service';
 import { Usuario } from '../../models/usuario.model';
 import { ProfileService } from '../../services/profile.service';
-import { Profile, RedesSociales } from '../../models/profile.model';
-import { PipesModule } from '../../pipes/pipes.module';
-import { ImagenPipe } from "../../pipes/imagen.pipe";
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { Parent } from '../../models/parents';
@@ -24,7 +21,6 @@ import { ParentService } from '../../services/parent-service.service';
     MenuFooterComponent,
     LateralComponent,
     BackButtnComponent,
-    // ImagenPipe,
     LoadingComponent,
     TranslateModule
 ],
@@ -42,7 +38,6 @@ export class ProfileComponent {
 
   constructor(
     private authService: AuthService,
-    private profileService: ProfileService,
     private parentService: ParentService,
   ) {
     this.user = this.authService.getUser();
@@ -61,13 +56,8 @@ export class ProfileComponent {
     this.isLoading = true;
     this.loadingTitle = 'Loading Profile...';
     this.parentService.getUserById(this.user.id).subscribe((resp:any) => {
-      // console.log(resp);
       this.profile = resp.representante || null;
       this.isLoading = false;
-      // this.getSpeciality();
-      // setTimeout(() => {
-      // }
-      // , 5000);
     })
   }
 

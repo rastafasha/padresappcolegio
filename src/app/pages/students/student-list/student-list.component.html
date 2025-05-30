@@ -20,7 +20,7 @@
                 </div>
             </form>
             <!-- buscador -->
-              <button type="button" class="btn btn-primary" [routerLink]="['/students/add']" >
+              <button type="button" class="btn btn-primary" [routerLink]="['/student/add']" >
                                 add
                             </button>
         </div>
@@ -49,8 +49,13 @@
                     <tr
                         *ngFor="let studentprofile of students  ; let i = index;">
 
-                        <!-- <td><a [routerLink]="['/dashboard/padre/detail/', studentprofile.id]">{{studentprofile.id}}</a></td> -->
-                        <td>{{studentprofile.name}} {{studentprofile.surname}} </td>
+                        <td>
+                            <img [src]="studentprofile.avatar| imagenPipe: 'students' " style="width:100%; padding: 10px;
+                border: 1px solid #ccc;
+                margin-top: 30px;" class="shadow" alt="">
+                        </td>
+                        <td><a [routerLink]="['/student/edit/', studentprofile.id]">{{studentprofile.name}} {{studentprofile.surname}}</a></td>
+                        <!-- <td>{{studentprofile.name}} {{studentprofile.surname}} </td> -->
                         <td>{{studentprofile.n_doc}} </td>
                         <!-- <td>{{studentprofile.gender}} </td> -->
                         <td>

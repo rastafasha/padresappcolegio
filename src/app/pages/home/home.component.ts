@@ -3,13 +3,10 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { MenuFooterComponent } from '../../shared/menu-footer/menu-footer.component';
 import { AvisoComponent } from '../../components/aviso/aviso.component';
-import { ListProductsComponent } from '../../components/list-products/list-products.component';
 import { LateralComponent } from '../../components/lateral/lateral.component';
 import { CommonModule } from '@angular/common';
 import { BackButtnComponent } from '../../shared/backButtn/backButtn.component';
-import { Usuario } from '../../models/usuario.model';
 import { AuthService } from '../../services/auth.service';
-import { ListaUsuariosComponent } from '../../components/ListaUsuarios/ListaUsuarios.component';
 import { Profile } from '../../models/profile.model';
 import { Router } from '@angular/router';
 import { Parent } from '../../models/parents';
@@ -25,8 +22,6 @@ import { RecentpaymentsComponent } from '../../components/recentpayments/recentp
     LateralComponent,
     CommonModule,
     BackButtnComponent,
-    // ListProductsComponent,
-    // ListaUsuariosComponent,
     TranslateModule,
     TasabcvComponent,
     RecentpaymentsComponent

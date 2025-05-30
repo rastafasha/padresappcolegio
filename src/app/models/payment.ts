@@ -17,6 +17,7 @@ export class Payment {
    referencia?:string;
    telefono?:string;
    image?:string;
+   avatar!:string;
    deuda?:string;
    monto_pendiente?:string;
    status_deuda?:string;

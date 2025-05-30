@@ -14,12 +14,14 @@ export class Student {
     birth_date: string = "";
     school_year: string = "";
     section: string = "";
+    matricula: string = "";
     email: string = "";
     password?: string = "";
     token: string = "";
     is_active: number = 0;
     created_at: string = "";
     image: string = "";
+    avatar: string = "";
     role?: 'SUPERADMIN' | 'ADMIN' | 'MEMBER' | 'GUEST';
     
 

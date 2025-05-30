@@ -76,6 +76,11 @@ export class StudentService {
         return this.http.get(URL,{headers:headers});
       }
     
+      createStudent(data:any){
+          const headers = new HttpHeaders({'Authorization': 'Bearer'+this.authService.token});
+          const URL = baseUrl+'/student/store';
+          return this.http.post(URL,data, {headers:headers});
+        }
     
       update(data: any) {
         const url = `${baseUrl}/student/update/${data.id}`;

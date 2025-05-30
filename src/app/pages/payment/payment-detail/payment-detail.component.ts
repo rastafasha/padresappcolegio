@@ -8,12 +8,13 @@ import { PaymentService } from '../../../services/payment.service';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { MenuFooterComponent } from '../../../shared/menu-footer/menu-footer.component';
 import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
+import { ImagenPipe } from '../../../pipes/imagen.pipe';
 
 @Component({
   selector: 'app-payment-detail',
   imports: [
     CommonModule, ReactiveFormsModule, FormsModule,
-    HeaderComponent, MenuFooterComponent,BackButtnComponent
+    HeaderComponent, MenuFooterComponent,BackButtnComponent, ImagenPipe
   ],
   templateUrl: './payment-detail.component.html',
   styleUrl: './payment-detail.component.scss'
