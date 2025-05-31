@@ -53,3 +53,10 @@ export class Payment {
     }
 
 }
+
+export class StudentWithDebt{
+    student_id!:number;
+    student_name!: string;
+    debt_amount!:number;
+    earliest_debt_date!:Date
+}

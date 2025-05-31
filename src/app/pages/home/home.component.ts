@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { Parent } from '../../models/parents';
 import { TasabcvComponent } from "../../components/tasabcv/tasabcv.component";
 import { RecentpaymentsComponent } from '../../components/recentpayments/recentpayments.component';
+import { StatuspagosComponent } from '../../components/statuspagos/statuspagos.component';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ import { RecentpaymentsComponent } from '../../components/recentpayments/recentp
     BackButtnComponent,
     TranslateModule,
     TasabcvComponent,
-    RecentpaymentsComponent
+    RecentpaymentsComponent,
+    StatuspagosComponent
 ],
   providers: [TranslateService],
   templateUrl: './home.component.html',

@@ -1,0 +1,18 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="row" *ngIf="!isLoading">
+    
+    <div class="alert alert-success shadow" *ngIf="parent_has_debt ">
+        Deuda pendendiente:  <br>
+        <strong>{{parent_debt_amount|currency}}</strong>
+        <div *ngIf="student_with_debt">
+            <ul *ngFor="let student of student_with_debt">
+                <li>{{student.student_name}}<br>
+                    {{student.debt_amount|currency}}<br>
+                    {{student.earliest_debt_date|date}}
+
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</div>
