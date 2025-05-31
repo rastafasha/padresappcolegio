@@ -6,9 +6,10 @@
         <strong>{{parent_debt_amount|currency}}</strong>
         <div *ngIf="student_with_debt">
             <ul *ngFor="let student of student_with_debt">
-                <li>{{student.student_name}}<br>
-                    {{student.debt_amount|currency}}<br>
-                    {{student.earliest_debt_date|date}}
+                <li>Nombre: {{student.student_name}}<br>
+                    Matricula: {{student.matricula|currency}}<br>
+                    Deuda: {{student.debt_amount|currency}}<br>
+                    Fecha: {{student.earliest_debt_date|date}}
 
                 </li>
             </ul>

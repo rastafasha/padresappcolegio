@@ -5,63 +5,59 @@
     <div class="col-xs-12">
 
         <app-backButtn [pageTitle]="pageTitle"></app-backButtn>
-        <div class="clear"></div>
+        <app-loading *ngIf="isLoading"></app-loading>
 
-        <section class="section dashboard">
+        <section class="section dashboard" *ngIf="!isLoading">
 
             <div class="card pagodetail">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
                         <p><b>Referencia:</b> {{payment.referencia}}</p>
-                        <p><b>Status:</b>
-                            <span class="badge bg-success" *ngIf="payment.status === 'APPROVED'">Aprobado</span>
-                            <span class="badge bg-primary" *ngIf="payment.status === 'PENDING'">Pendiente</span>
-                            <span class="badge bg-danger" *ngIf="payment.status === 'REJECTED'">Rechazado</span>
-                        </p>
-                        <p><b>Nombre de la cuenta:</b> {{payment.nombre}}</p>
-                        <p><b>email de la cuenta:</b> {{payment.email}}</p>
-                        <p><b>Fecha | Hora:</b> {{payment.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
-                        <p><b>Monto:</b>
-                            <span
-                                *ngIf="payment.metodo ==='Transferencia Bolívares' || payment.metodo ==='payment Móvil'">
-                                {{payment.monto|currency:'Bs.'}}
+                    <p><b>Status:</b>
+                        <span class="badge bg-success" *ngIf="payment.status === 'APPROVED'">Aprobado</span>
+                        <span class="badge bg-primary" *ngIf="payment.status === 'PENDING'">Pendiente</span>
+                        <span class="badge bg-danger" *ngIf="payment.status === 'REJECTED'">Rechazado</span>
+                    </p>
+                    <p><b>Nombre de la cuenta:</b> {{payment.nombre}}</p>
+                    <p><b>email de la cuenta:</b> {{payment.email}}</p>
+                    <p><b>Padre:</b> {{parent.name}} {{parent.surname}}</p>
+                    <p><b>Estudiante:</b> {{student.name}} {{student.surname}}</p>
+                    <p><b>Fecha | Hora:</b> {{payment.created_at | date:'MMM d, y, h:mm:ss a'}}</p>
+                    <p><b>Metodo de Pago:</b> {{payment.metodo}}</p>
+                    <div *ngIf="payment.bank_name">
+                        <p><b>Nombre del Banco:</b> {{payment.bank_name}}</p>
+                    </div>
 
-                            </span>
-                            <span *ngIf="payment.metodo ==='Transferencia Dólares'">
-                                {{payment.monto|currency}}
-                            </span>
-                        </p>
-                        <p><b>Estudiante:</b> {{payment.student_id}}</p>
-                        <p><b>deuda:</b>
-                            <span
-                                *ngIf="payment.metodo ==='Transferencia Bolívares' || payment.metodo ==='payment Móvil'">
-                                {{payment.deuda|currency:'Bs.'}}
+                    <p><b>Monto:</b>
+                        <span *ngIf="payment.metodo ==='Transferencia Bolívares' || payment.metodo ==='payment Móvil'">
+                            {{payment.monto|currency:'Bs.'}}
 
-                            </span>
-                            <span *ngIf="payment.metodo ==='Transferencia Dólares'">
-                                {{payment.deuda|currency}}
-                            </span>
-                        </p>
-                        <p><b>monto_pendiente:</b>
-                            <span
-                                *ngIf="payment.metodo ==='Transferencia Bolívares' || payment.metodo ==='payment Móvil'">
-                                {{payment.monto_pendiente|currency:'Bs.'}}
+                        </span>
+                        <span *ngIf="payment.metodo ==='Transferencia Dólares'">
+                            {{payment.monto|currency}}
+                        </span>
+                    </p>
+                    <p><b>deuda:</b>
+                        <span *ngIf="payment.metodo ==='Transferencia Bolívares' || payment.metodo ==='payment Móvil'">
+                            {{payment.deuda|currency:'Bs.'}}
 
-                            </span>
-                            <span *ngIf="payment.metodo ==='Transferencia Dólares'">
-                                {{payment.monto_pendiente|currency}}
-                            </span>
-                        </p>
-                        <p><b>status_deuda:</b> {{payment.status_deuda}}</p>
+                        </span>
+                        <span *ngIf="payment.metodo ==='Transferencia Dólares'">
+                            {{payment.deuda|currency}}
+                        </span>
+                    </p>
+                    <p><b>Monto Pendiente:</b>
+                        <span *ngIf="payment.metodo ==='Transferencia Bolívares' || payment.metodo ==='payment Móvil'">
+                            {{payment.monto_pendiente|currency:'Bs.'}}
+
+                        </span>
+                        <span *ngIf="payment.metodo ==='Transferencia Dólares'">
+                            {{payment.monto_pendiente|currency}}
+                        </span>
+                    </p>
+                    <p><b>Status deuda:</b> {{payment.status_deuda}}</p>
                     </div>
                     <div class="col-xs-12 col-sm-6">
-                        <!-- <p><b>Email:</b> {{pago.email}}</p> -->
-                        <p><b>Metodo de Pago:</b> {{payment.metodo}}</p>
-                        <div *ngIf="payment.bank_name">
-                            <p><b>Nombre del Banco:</b> {{payment.bank_name}}</p>
-                        </div>
-
-                        <!-- <p><b>Txn Id:</b> {{pago.}}</p> -->
 
                         <img [src]="payment.avatar | imagenPipe: 'payments'" style="width:100%; padding: 10px;
                 border: 1px solid #ccc;

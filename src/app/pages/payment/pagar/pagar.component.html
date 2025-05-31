@@ -14,10 +14,9 @@
                     <p><b>Matricula:</b> {{matricula|currency}}</p>
                     <p><b>Deuda:</b> {{deuda|currency}}</p>
                     <p><b>Fecha:</b> {{fecha|date:'MMM d, y, h:mm:ss a'}}</p>
-                    <p><b>Monto Pendiente:</b> ${{matricula}}</p>
                     <p><b>Tasa BCV:</b> {{precio_dia|currency:'Bs.'}}</p>
                     <p><b>Tasa BCV Fecha:</b> {{precio_fecha|date:'MMM d, y, h:mm:ss a'}}</p>
-                    <p><b>total a pagar:</b> {{matricula*precio_dia|currency:'Bs.'}}</p>
+                    <p><b>total a pagar (deuda*$):</b> {{deuda*precio_dia|currency:'Bs.'}}</p>
                 </div>
             </div>
         </div>

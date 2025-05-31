@@ -37,15 +37,15 @@
                         <th scope="col">Referencia</th>
                         <!-- <th scope="col">Usuario</th> -->
                         <th scope="col">Estudiante</th>
-                        <th scope="col">bank destino</th>
+                        <th scope="col">Banco Destino</th>
                         <th scope="col">Metodo</th>
                         <th scope="col">Monto </th>
                         <th scope="col">deuda</th>
-                        <th scope="col">monto_pendiente</th>
-                        <th scope="col">status_deuda</th>
+                        <th scope="col">Monto Pendiente</th>
+                        <th scope="col">Status Deuda</th>
                         <th scope="col">Status</th>
                         <th scope="col">Fecha | Hora</th>
-                        <th scope="col">Acciones</th>
+                        <!-- <th scope="col">Acciones</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -96,11 +96,11 @@
                             <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                         </td>
                         <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
-                        <td class="text-nowrap text-center">
+                        <!-- <td class="text-nowrap text-center">
                             <button *ngIf="pago.status === 'PENDING' || pago.status === 'REJECTED'" type="button" class="btn btn-primary"[routerLink]="['/pagar/',pago.id]" >
                                 Pagar
                             </button>
-                        </td>
+                        </td> -->
                     </tr>
 
 

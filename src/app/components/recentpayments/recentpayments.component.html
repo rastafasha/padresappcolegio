@@ -39,77 +39,23 @@
                         <table class="table table-borderless datatable">
                             <thead>
                                 <tr>
-                                    <th scope="col">Referencia</th>
-                                    <th scope="col">Hijo</th>
-                                    <th scope="col">bank destino</th>
-                                    <th scope="col">Metodo</th>
-                                    <th scope="col">Monto </th>
-                                    <th scope="col">deuda</th>
-                                    <th scope="col">monto_pendiente</th>
-                                    <th scope="col">status_deuda</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Fecha | Hora</th>
+                                    <th scope="col">Estudiante</th>
+                                    <th scope="col">Matricula</th>
+                                    <th scope="col">Deuda</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let pago of payments  ">
+                                <tr *ngFor="let pago of student_with_debt  ">
                                     <th scope="row"><a
-                                            [routerLink]="['/payment-detail', pago.id]">{{pago.referencia}}</a></th>
-                                    <th>{{pago?.student?.name}}</th>
-                                    <td>{{pago.bank_destino}}</td>
-                                    <td>{{pago.metodo}}</td>
-                                    <td>
-                                        <span
-                                            *ngIf="pago.metodo ==='Transferencia Bolívares' || pago.metodo ==='Pago Móvil'">
-                                            {{pago.monto|currency:'Bs.'}}
-
-                                        </span>
-                                        <span *ngIf="pago.metodo ==='Transferencia Dólares'">
-                                            {{pago.monto|currency}}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span
-                                            *ngIf="pago.metodo ==='Transferencia Bolívares' || pago.metodo ==='Pago Móvil'">
-                                            {{pago.deuda|currency:'Bs.'}}
-
-                                        </span>
-                                        <span *ngIf="pago.metodo ==='Transferencia Dólares'">
-                                            {{pago.deuda|currency}}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span
-                                            *ngIf="pago.metodo ==='Transferencia Bolívares' || pago.metodo ==='Pago Móvil'">
-                                            {{pago.monto_pendiente|currency:'Bs.'}}
-
-                                        </span>
-                                        <span *ngIf="pago.metodo ==='Transferencia Dólares'">
-                                            {{pago.monto_pendiente|currency}}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <!-- {{pago.status_deuda}} -->
-                                        <span class="badge bg-success"
-                                            *ngIf="pago.status_deuda !== 'DEUDA'">Pagado</span>
-                                        <span class="badge bg-danger" *ngIf="pago.status_deuda === 'DEUDA'">Deuda</span>
-                                    </td>
-
-
-                                    <td>
-                                        <span class="badge bg-success"
-                                            *ngIf="pago.status === 'APPROVED'">Aprobado</span>
-                                        <span class="badge bg-primary"
-                                            *ngIf="pago.status === 'PENDING'">Pendiente</span>
-                                        <span class="badge bg-danger"
-                                            *ngIf="pago.status === 'REJECTED'">Rechazado</span>
-                                        <!-- <span class="badge bg-success">{{pago.status}}</span> -->
-                                    </td>
-                                    <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
+                                            [routerLink]="['/payment-detail', pago.student_id]">{{pago.student_name}}</a></th>
+                                    <!-- <th>{{pago.student_name}}</th> -->
+                                    <td>{{pago.matricula}}</td>
+                                    <td>{{pago.debt_amount|currency}}</td>
+                                    
                                     <td class="text-nowrap text-center">
-                                        <button *ngIf="pago.status === 'PENDING' || pago.status === 'REJECTED'"
-                                            type="button" class="btn btn-primary" [routerLink]="['/pagar/',pago.id]">
+                                        <button 
+                                            type="button" class="btn btn-primary" [routerLink]="['/pagar/',pago.student_id]">
                                             Pagar
                                         </button>
                                     </td>

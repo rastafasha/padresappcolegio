@@ -58,5 +58,12 @@ export class StudentWithDebt{
     student_id!:number;
     student_name!: string;
     debt_amount!:number;
+    matricula!:number;
     earliest_debt_date!:Date
+}
+export class students_with_debt{
+    student_id!:number;
+    student_name!: string;
+    debt_amount!:number;
+    matricula!:number;
 }

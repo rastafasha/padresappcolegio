@@ -74,6 +74,10 @@ export class PaymentService {
    const url = `${baseUrl}/payment/update/status/${payment_id}`;
     return this.http.put(url, data, this.headers);
   }
+  pagarDeuda(data:any, parent_id:any, student_id:number): Observable<any> {
+   const url = `${baseUrl}/payment/pay-debt/${parent_id}/${student_id}`;
+    return this.http.post(url, data, this.headers);
+  }
 
 
 
@@ -109,6 +113,14 @@ export class PaymentService {
     return this.http.get<any>(url, this.headers)
       .pipe(
         map((resp:{ok: boolean, payments: Payment}) => resp.payments)
+        );
+  }
+  getDeudaPendingbyUser(id:number): Observable<any> {
+
+    const url = `${baseUrl}/payment/debt-by-parent/${id}`;
+    return this.http.get<any>(url, this.headers)
+      .pipe(
+        map((resp:{ok: boolean}) => resp)
         );
   }
   getPagosStatusbyUser(parent_id:number): Observable<any> {

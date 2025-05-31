@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location, NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Payment } from '../../models/payment';
+import { Payment, students_with_debt } from '../../models/payment';
 import { PaymentService } from '../../services/payment.service';
 import { UserService } from '../../services/usuario.service';
 import { FormsModule } from '@angular/forms';
@@ -31,6 +31,8 @@ export class RecentpaymentsComponent {
   student_id!:number;
   student!:Student;
 
+  student_with_debt: students_with_debt[] = [];
+
   constructor(
     private location: Location,
     private paymentService: PaymentService,
@@ -42,15 +44,15 @@ export class RecentpaymentsComponent {
   }
 
   ngOnInit(): void {
-    this.getPagos();
+    this.getDeudas();
     window.scrollTo(0, 0);
     // this.getPagos_list();
   }
 
   getPagos(): void {
     this.isLoading = true;
-    this.paymentService.getPagosPendingbyUser(this.user.id).subscribe((res: any) => {
-      this.payments = res.data;
+    this.paymentService.getDeudaPendingbyUser(this.user.id).subscribe((res: any) => {
+      this.payments = res;
       (error:any) => (this.error = error);
       this.isLoading = false;
         // console.log(this.payments);
@@ -66,6 +68,16 @@ export class RecentpaymentsComponent {
             }
           });
         }
+    })
+  }
+  getDeudas(): void {
+    this.isLoading = true;
+    this.paymentService.getDeudaPendingbyUser(this.user.id).subscribe((res: any) => {
+      this.student_with_debt = res.students_with_debt;
+      (error:any) => (this.error = error);
+      this.isLoading = false;
+        console.log(this.student_with_debt);
+       
     })
   }
   

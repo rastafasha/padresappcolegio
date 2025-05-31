@@ -184,7 +184,7 @@ export class PagarComponent implements OnInit {
     //crear
     this.cargando = true;
     // Swal.fire('Procesando', `procesando Pago`, 'warning');
-    this.paymentService.create(formData).subscribe((resp: any) => {
+    this.paymentService.pagarDeuda(formData,this.parent_id, this.student_id).subscribe((resp: any) => {
       this.pagoSeleccionado = resp;
 
       // console.log(this.pagoSeleccionado);
