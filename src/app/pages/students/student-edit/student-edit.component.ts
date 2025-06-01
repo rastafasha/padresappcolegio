@@ -58,7 +58,7 @@ export class StudentEditComponent {
     public user_id!: number;
     public student!: Student;
     public roles!: [];
-    public profile_id!: number;
+    public student_id!: number;
     public gender!: number;
   
       // public profile!: Profile;
@@ -112,7 +112,7 @@ export class StudentEditComponent {
             // console.log('Profile response:', resp); // Log the response
             this.profile = resp.student;
            
-            this.profile_id = resp.student.id;
+            this.student_id = resp.student.id;
             this.IMAGE_PREVISUALIZA = resp.student.avatar;
             this.FILE_AVATAR = resp.student.avatar;
             this.gender = resp.student.gender
@@ -144,6 +144,7 @@ export class StudentEditComponent {
               usuario: this.user.id,
             });
             this.profileSeleccionado = res;
+            this.student_id = res.student.id;
             console.log('profileSeleccionado',res);
             // this.getProfile();
           }
@@ -195,7 +196,7 @@ export class StudentEditComponent {
     }
   
   
-    onUserSave(){
+    onUserSave(){debugger
   
       const formData = new FormData();
       formData.append("name", this.userForm.value.name);
@@ -206,6 +207,10 @@ export class StudentEditComponent {
         formData.append("address", this.userForm.value.address);
         
       }
+      // if (this.userForm.value.student_id) {
+      //   formData.append("student_id", this.userForm.value.student_id);
+        
+      // }
       
       if (this.userForm.value.matricula) {
         formData.append("matricula", this.userForm.value.matricula);
@@ -240,22 +245,22 @@ export class StudentEditComponent {
   
       
 
-        if(this.profile_id){
-      this.studentService.update( formData).subscribe((resp:any) => {
-          console.log(resp);
-          this.profileSeleccionado = resp;
-          // this.router.navigate(['/profile']);
-          Swal.fire('Exito!', 'Se ha actualizado la formData', 'success');
-          this.ngOnInit();
-        });
-    }else{
-      this.studentService.createStudent( formData).subscribe((resp:any) => {
-          console.log(resp);
-          Swal.fire('Exito!', 'Se ha actualizado la formData', 'success');
-          this.router.navigate(['/students']);
-          this.ngOnInit();
-        });
-    }
+        if(this.student_id){
+          this.studentService.update( formData, this.student_id).subscribe((resp:any) => {
+              console.log(resp);
+              this.profileSeleccionado = resp;
+              // this.router.navigate(['/profile']);
+              Swal.fire('Exito!', 'Se ha actualizado la formData', 'success');
+              this.ngOnInit();
+            });
+        }else{
+          this.studentService.createStudent( formData).subscribe((resp:any) => {
+              console.log(resp);
+              Swal.fire('Exito!', 'Se ha actualizado la formData', 'success');
+              this.router.navigate(['/students']);
+              this.ngOnInit();
+            });
+        }
   
     }
   

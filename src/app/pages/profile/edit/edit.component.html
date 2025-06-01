@@ -9,7 +9,8 @@
                     <app-loading *ngIf="isLoading" [loadingTitle]="loadingTitle"></app-loading>
                     <form   [formGroup]="userForm" *ngIf="!isLoading"  >
                         <div class="card text-left mb-4 ">
-                          <img class="card-img-top" [src]="IMAGE_PREVISUALIZA" style="width: 45px; height: 45px; border-radius: 100px;" alt="">
+                          <!-- <img class="card-img-top" [src]="IMAGE_PREVISUALIZA" style="width: 45px; height: 45px; border-radius: 100px;" alt=""> -->
+                          <img [src]="(profile?.avatar || '')  | imagenPipe: 'parents' "  style="width: 45px; height: 45px; border-radius: 100px;" alt="">
                           <div class="card-body">
                             <h4 class="card-title">{{user.name}}</h4>
                             <p class="card-text">{{user.email}}</p>

@@ -12,6 +12,7 @@ import { LoadingComponent } from '../../shared/loading/loading.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { Parent } from '../../models/parents';
 import { ParentService } from '../../services/parent-service.service';
+import { ImagenPipe } from '../../pipes/imagen.pipe';
 
 @Component({
   imports: [
@@ -22,7 +23,8 @@ import { ParentService } from '../../services/parent-service.service';
     LateralComponent,
     BackButtnComponent,
     LoadingComponent,
-    TranslateModule
+    TranslateModule,
+    ImagenPipe
 ],
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -30,11 +32,11 @@ import { ParentService } from '../../services/parent-service.service';
 })
 export class ProfileComponent {
   pageTitle= 'Profile';
-  public user!: Usuario;
+  public user!: Parent;
   public isLoading:boolean = false;
     loadingTitle!:string;
 
-  public profile: Parent = new Parent();
+  public profile!: Parent;
 
   constructor(
     private authService: AuthService,
@@ -46,10 +48,7 @@ export class ProfileComponent {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.user = this.authService.getUser();
-    if(this.profile){
-      // this.getProfile();
-
-    }
+    this.getProfile();
   }
 
   getProfile(){

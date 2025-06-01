@@ -51,9 +51,7 @@
                         *ngFor="let studentprofile of students  ; let i = index;">
 
                         <td>
-                            <img [src]="studentprofile.avatar| imagenPipe: 'students' " style="width:100%; padding: 10px;
-                border: 1px solid #ccc;
-                margin-top: 30px;" class="shadow" alt="">
+                            <img [src]="studentprofile.avatar| imagenPipe: 'students' "  class="imagecircle shadow" alt="">
                         </td>
                         <td><a [routerLink]="['/student/edit/', studentprofile.id]">{{studentprofile.name}} {{studentprofile.surname}}</a></td>
                         <!-- <td>{{studentprofile.name}} {{studentprofile.surname}} </td> -->

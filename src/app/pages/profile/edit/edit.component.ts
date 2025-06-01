@@ -14,6 +14,7 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ParentService } from '../../../services/parent-service.service';
 import { Parent } from '../../../models/parents';
+import { ImagenPipe } from '../../../pipes/imagen.pipe';
 
 @Component({
   selector: 'app-edit',
@@ -25,7 +26,8 @@ import { Parent } from '../../../models/parents';
         ReactiveFormsModule,
         FormsModule,
         LoadingComponent,
-        TranslateModule
+        TranslateModule,
+        ImagenPipe
   ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css'

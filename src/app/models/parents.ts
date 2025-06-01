@@ -16,6 +16,7 @@ export class Parent {
     is_active: number = 0;
     created_at: string = "";
     image: string = "";
+    avatar!: string ;
     role?: 'SUPERADMIN' | 'ADMIN' | 'MEMBER' | 'GUEST';
     
 

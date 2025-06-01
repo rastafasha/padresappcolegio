@@ -82,9 +82,9 @@ export class StudentService {
           return this.http.post(URL,data, {headers:headers});
         }
     
-      update(data: any) {
-        const url = `${baseUrl}/student/update/${data.id}`;
-        return this.http.put(url, data, this.headers);
+      update(data: any, student_id:number) {
+        const url = `${baseUrl}/student/update/${student_id}`;
+        return this.http.post(url, data, this.headers);
       }
     
       deleteById(user:Student): Observable<any> {
