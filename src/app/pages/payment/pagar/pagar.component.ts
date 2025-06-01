@@ -87,10 +87,8 @@ export class PagarComponent implements OnInit {
 
   getUltimoPrecioTasaBcv(){
     this.tasaBcvService.getTasas().subscribe((resp:any)=>{
-      this.precio_dia = resp[0].precio_dia
-      this.precio_fecha = resp[0].created_at
-
-      // console.log(resp);
+      this.precio_dia = resp[0].precio_dia;
+      this.precio_fecha = resp[0].created_at;
     })
   }
 
@@ -100,10 +98,10 @@ export class PagarComponent implements OnInit {
       .getPagosPendingbyStudent(this.student_id)
       .subscribe((resp: any) => {
         this.isLoading = false;
-        // console.log(resp);
-        this.deuda = resp.monto;
-        this.parent_id = resp.parent_id;
-        this.fecha = resp.fecha;
+        console.log(resp);
+        this.deuda = resp[0].monto;
+        this.parent_id = resp[0].parent_id;
+        this.fecha = resp[0].fecha;
         
       });
   }
@@ -111,7 +109,7 @@ export class PagarComponent implements OnInit {
 
   getStuden(){
     this.studentService.getUserById(this.student_id).subscribe((resp:any)=>{
-      // console.log(resp);
+      console.log(resp);
       this.student = resp.student;
       this.matricula = resp.student.matricula
     })
@@ -127,7 +125,7 @@ export class PagarComponent implements OnInit {
       referencia: ['',Validators.required],
       email: [this.usuario.email],
       nombre: [this.usuario.name],
-      parent_id: [this.usuario.id],
+      parent_id: [this.parent_id],
       student_id: [''],
       status: ['PENDING'],
       fecha: [''],
