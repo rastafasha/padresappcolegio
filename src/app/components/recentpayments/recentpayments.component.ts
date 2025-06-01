@@ -50,27 +50,7 @@ export class RecentpaymentsComponent {
     // this.getPagos_list();
   }
 
-  getPagos(): void {
-    this.isLoading = true;
-    this.paymentService.getDeudaPendingbyUser(this.user.id).subscribe((res: any) => {
-      this.payments = res;
-      (error:any) => (this.error = error);
-      this.isLoading = false;
-        // console.log(this.payments);
-        //recorremos payment para traer la info del studiante
-        if (this.payments) {
-          this.payments.forEach((payment: Payment) => {
-            if (payment.student_id !== undefined) {
-              this.studentService.getUserById(payment.student_id).subscribe((res: any) => {
-                this.student = res;
-                console.log(this.student);
-
-              });
-            }
-          });
-        }
-    })
-  }
+  
   getDeudas(): void {
     this.isLoading = true;
     this.paymentService.getDeudaPendingbyUser(this.user.id).subscribe((res: any) => {
@@ -99,7 +79,7 @@ export class RecentpaymentsComponent {
   }
 
   public PageSize(): void {
-    this.getPagos();
+    this.getDeudas();
     this.query = '';
   }
 
@@ -115,7 +95,7 @@ export class RecentpaymentsComponent {
       //   caption:'Mensaje de Validación',
       //   type:'success',
       // })
-      this.getPagos();
+      this.getDeudas();
     });
   }
 }

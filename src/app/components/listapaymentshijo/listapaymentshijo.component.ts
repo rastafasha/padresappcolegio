@@ -10,11 +10,13 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 import { RouterLink } from '@angular/router';
+import { ImagenPipe } from '../../pipes/imagen.pipe';
 
 @Component({
   selector: 'app-listapaymentshijo',
   imports:[
-    CommonModule, FormsModule, NgIf, NgFor, LoadingComponent, RouterLink
+    CommonModule, FormsModule, NgIf, NgFor, LoadingComponent, RouterLink,
+    ImagenPipe
   ],
   templateUrl: './listapaymentshijo.component.html',
   styleUrls: ['./listapaymentshijo.component.css']

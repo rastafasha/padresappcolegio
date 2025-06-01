@@ -18,6 +18,11 @@
                         <span class="badge bg-primary" *ngIf="payment.status === 'PENDING'">Pendiente</span>
                         <span class="badge bg-danger" *ngIf="payment.status === 'REJECTED'">Rechazado</span>
                     </p>
+                    <p><b>Status deuda:</b> 
+                        <!-- {{payment.status_deuda}} -->
+                    <span class="badge bg-success" *ngIf="payment.status_deuda !== 'DEUDA'">Pagado</span>
+                                        <span class="badge bg-danger" *ngIf="payment.status_deuda === 'DEUDA'">Deuda</span>
+                    </p>
                     <p><b>Nombre de la cuenta:</b> {{payment.nombre}}</p>
                     <p><b>email de la cuenta:</b> {{payment.email}}</p>
                     <p><b>Padre:</b> {{parent.name}} {{parent.surname}}</p>
@@ -55,7 +60,7 @@
                             {{payment.monto_pendiente|currency}}
                         </span>
                     </p>
-                    <p><b>Status deuda:</b> {{payment.status_deuda}}</p>
+                    
                     </div>
                     <div class="col-xs-12 col-sm-6">
 

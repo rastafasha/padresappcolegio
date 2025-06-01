@@ -15,12 +15,13 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
 import { StudentService } from '../../../services/student-service.service';
+import { ImagenPipe } from '../../../pipes/imagen.pipe';
 
 @Component({
   selector: 'app-payment-list',
   imports: [MenuFooterComponent,HeaderComponent,
     FormsModule,ReactiveFormsModule, NgFor, NgIf, LoadingComponent,
-    RouterLink, CommonModule, BackButtnComponent
+    RouterLink, CommonModule, BackButtnComponent, ImagenPipe
   ],
   templateUrl: './payment-list.component.html',
   styleUrl: './payment-list.component.scss'

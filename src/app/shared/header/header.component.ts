@@ -8,6 +8,7 @@ import { Profile } from '../../models/profile.model';
 import { ImagenPipe } from '../../pipes/imagen.pipe';
 import {TranslateService} from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { Parent } from '../../models/parents';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -45,6 +46,7 @@ export class HeaderComponent {
     this.authService.getLocalDarkMode();
     this.user = this.authService.getUser();
     // this.getProfile();
+    console.log(this.user);
     const lang = localStorage.getItem('lang');
     if (lang) {
       this.activeLang = lang;
