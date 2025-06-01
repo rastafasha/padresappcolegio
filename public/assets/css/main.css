@@ -274,3 +274,6 @@ img {
     color: red;
 }
 
+.circle{
+    border-radius: 100px !important;
+}

@@ -54,7 +54,7 @@ export class StatuspagosComponent {
     }
 
     public PageSize(): void {
-    this.getTasaDBcvdelDia();
+      this.getTasaDBcvdelDia();
   }
 }
 
