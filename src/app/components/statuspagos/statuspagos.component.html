@@ -2,6 +2,9 @@
 <div class="row" *ngIf="!isLoading">
     
     <div class="alert alert-success shadow" *ngIf="parent_has_debt ">
+        <a href="javascript:;" (click)="PageSize()"
+                                                class="btn btn-primary doctor-refresh ms-2"><i
+                                                    class="fa fa-refresh"></i></a>
         Deuda pendendiente:  <br>
         <strong>{{parent_debt_amount|currency}}</strong>
         <div *ngIf="student_with_debt">

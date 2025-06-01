@@ -52,6 +52,10 @@ export class StatuspagosComponent {
         console.log(this.student_with_debt);
       })
     }
+
+    public PageSize(): void {
+    this.getTasaDBcvdelDia();
+  }
 }
 
 

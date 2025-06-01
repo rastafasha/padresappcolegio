@@ -46,6 +46,7 @@ export class RecentpaymentsComponent {
   ngOnInit(): void {
     this.getDeudas();
     window.scrollTo(0, 0);
+    console.log(this.user);
     // this.getPagos_list();
   }
 
