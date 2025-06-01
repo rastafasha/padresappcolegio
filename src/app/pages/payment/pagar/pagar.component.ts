@@ -74,6 +74,7 @@ export class PagarComponent implements OnInit {
     this.activatedRoute.params.subscribe((resp: any) => {
       // console.log(resp);
       this.student_id = resp.id;
+      this.getStuden();
     });
     
     this.usuario = this.authService.user;
@@ -101,10 +102,9 @@ export class PagarComponent implements OnInit {
         this.isLoading = false;
         // console.log(resp);
         this.deuda = resp.monto;
-        this.student_id = resp.student_id;
         this.parent_id = resp.parent_id;
         this.fecha = resp.fecha;
-        this.getStuden();
+        
       });
   }
   
