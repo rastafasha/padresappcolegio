@@ -122,10 +122,10 @@ export class PagarComponent implements OnInit {
     this.PaymentRegisterForm = this.fb.group({
       id: [''],
       metodo: ['', Validators.required],
-      bank_name: [''],
+      bank_name: ['',Validators.required],
       bank_destino: ['',Validators.required],
       monto: ['', Validators.required],
-      referencia: [''],
+      referencia: ['',Validators.required],
       email: [this.usuario.email],
       nombre: [this.usuario.name],
       parent_id: [this.usuario.id],
@@ -171,7 +171,7 @@ export class PagarComponent implements OnInit {
     formData.append('status', 'PENDING');
 
     //crear
-    this.isLoading = true;
+    // this.isLoading = true;
     // Swal.fire('Procesando', `procesando Pago`, 'warning');
     this.paymentService.pagarDeuda(formData,this.parent_id, this.student_id).subscribe((resp: any) => {
       this.pagoSeleccionado = resp;
@@ -179,7 +179,7 @@ export class PagarComponent implements OnInit {
       // console.log(this.pagoSeleccionado);
       // this.emptyCart();
 
-      this.isLoading = false;
+     
 
       if (resp.message == 403) {
         // Swal.fire('Actualizado', this.text_validation, 'success');
@@ -203,6 +203,7 @@ export class PagarComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
+        //  this.isLoading = false;
         this.router.navigateByUrl(`/app/mis-pagos`);
       }
     });

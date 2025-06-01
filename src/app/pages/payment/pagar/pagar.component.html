@@ -82,18 +82,16 @@
                                 <form class="form-horizontal form-material formPagar" (submit)="updateForm()"
                                     enctype="multipart/form-data" [formGroup]="PaymentRegisterForm">
                                     <div class="container">
-
+                                        <!-- Seleccione Su Método de Pago -->
                                         <div *ngIf="!metodo" class="divinfo">
-                                            <div class="container">
-                                                <div class="col-xs-12 movil">
+                                            <div class="col-xs-12 movil">
                                                     <p class="text-center Bordered text-bold">
                                                         Seleccione Su Método de Pago</p>
                                                 </div>
-                                            </div>
                                         </div>
+                                        <!-- Seleccione Banco destino -->
                                         <div class="divinfo">
-                                            <div class="container">
-                                                <div class="col-xs-12 movil">
+                                            <div class="col-xs-12 movil">
                                                     <p class="text-center Bordered text-bold">
                                                         Seleccione Banco destino</p>
 
@@ -110,11 +108,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
-                                        <div class="col-xs-12 col-md-8 " style="float: left;">
+                                        <!-- Tipo De pago -->
+                                        <div class="col-xs-12 " style="float: left;">
                                             <div>
-                                                <div class="clear"></div>
                                                 <div class="div1">
                                                     <div class="form-group ">
                                                         <label for="">Tipo De pago </label>
@@ -156,6 +153,16 @@
                                                             <label for="">Nombre Banco </label>
                                                             <input type="text" formControlName="bank_name"
                                                                 class="form-control">
+
+
+                                                                @if(PaymentRegisterForm.controls['bank_name'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['bank_name'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                     </div>
                                                     <div class="div3">
@@ -163,6 +170,15 @@
                                                             <label for="">Num. referencia </label>
                                                             <input type="text" formControlName="referencia"
                                                                 class="form-control">
+
+                                                                @if(PaymentRegisterForm.controls['referencia'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['referencia'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                     </div>
                                                     <div class="div4">
@@ -177,6 +193,14 @@
                                                             <p>Colocar Monto a pagar: <b>{{deuda|currency}}</b></p>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
+                                                                @if(PaymentRegisterForm.controls['monto'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['monto'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                         <div class="form-group "
                                                             *ngIf="deuda && metodo==='Transferencia Bolívares'">
@@ -186,6 +210,14 @@
                                                             </p>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
+                                                                @if(PaymentRegisterForm.controls['monto'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['monto'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                     </div>
                                                 </div>
@@ -196,6 +228,14 @@
                                                             <label for="">Nombre Banco </label>
                                                             <input type="text" formControlName="bank_name"
                                                                 class="form-control">
+                                                                     @if(PaymentRegisterForm.controls['bank_name'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['bank_name'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                     </div>
                                                     <div class="div3">
@@ -203,6 +243,14 @@
                                                             <label for="">Num. referencia </label>
                                                             <input type="text" formControlName="referencia"
                                                                 class="form-control">
+                                                            @if(PaymentRegisterForm.controls['referencia'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['referencia'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                     </div>
                                                     <div class="div4">
@@ -210,6 +258,14 @@
                                                             <label for="">Num. Teléfono </label>
                                                             <input type="text" formControlName="phone"
                                                                 class="form-control">
+                                                            @if(PaymentRegisterForm.controls['phone'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['phone'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                     </div>
                                                     <div class="div5">
@@ -217,22 +273,22 @@
                                                             <label for="">Monto</label>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
+                                                            @if(PaymentRegisterForm.controls['monto'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['monto'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                         <div class="form-group " *ngIf="deuda">
-                                                            <label for="">Monto</label>
-                                                            <p>Colocar Monto a pagar:
-                                                                {{deuda*precio_dia|currency:'Bs.'}}</p>
+                                                            <label for="">Monto a pagar:</label>
+                                                            <p>{{deuda*precio_dia|currency:'Bs.'}}</p>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="div6">
-                                                        <div class="form-group ">
-                                                            <label for="">Fecha del Pago</label>
-                                                            <input type="date" formControlName="fecha"
-                                                                class="form-control">
-                                                        </div>
-                                                    </div> -->
                                                 </div>
 
                                             </div>
@@ -242,7 +298,6 @@
                                     </div>
                                     
                                     <!-- Foto -->
-
                                     <div *ngIf="metodo" class="divinfo">
                                         <div class="form-group local-top-form">
                                             <!-- <label class="local-top"> {{'formulario.Picture'|translate}}<span class="login-danger">*</span></label> -->
@@ -263,7 +318,7 @@
                                     <div class="clear"></div><br>
 
                                     <button class="btn btn-outline-success "
-                                        *ngIf="metodo == 'Transferencia Dólares'|| metodo == 'Transferencia Bolívares'|| metodo == 'pagomovil'"
+                                        *ngIf="metodo == 'Transferencia Dólares'|| metodo == 'Transferencia Bolívares'|| metodo == 'Pago Móvil'"
                                         type="submit">Registrar Pago</button>
 
 

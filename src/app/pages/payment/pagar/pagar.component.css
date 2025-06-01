@@ -40,6 +40,7 @@ ul.opcionespago li{
     grid-template-rows: repeat(4, 0.4fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    height: auto;
 }
 .div2 {
     grid-area: 1 / 2 / 1 / 1;
@@ -226,6 +227,7 @@ ul.opcionespago li{
 .formPagar {
     display: flex;
     flex-direction: column;
+    height: auto;
 }
 
 .formPagar .btn {
