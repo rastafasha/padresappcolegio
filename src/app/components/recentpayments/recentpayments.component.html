@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let pago of student_with_debt  ">
+                        <tr *ngFor="let pago of student_with_debt; let i = index  ">
                             <th scope="row">
                                 <a [routerLink]="['/payment-detail', pago.student_id]">
                                     {{pago.student_name}}
