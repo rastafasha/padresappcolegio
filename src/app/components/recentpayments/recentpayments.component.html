@@ -31,6 +31,7 @@
                 <table class="table table-borderless datatable">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Estudiante</th>
                             <th scope="col">Matricula</th>
                             <th scope="col">Deuda</th>
@@ -40,7 +41,12 @@
                     <tbody>
                         <tr *ngFor="let pago of student_with_debt; let i = index  ">
                             <th scope="row">
-                                <a [routerLink]="['/payment-detail', pago.student_id]">
+                                <a [routerLink]="['/student/edit/', pago.student_id]">
+                                    {{pago.student_id}}
+                                </a>
+                            </th>
+                            <th scope="row">
+                                <a [routerLink]="['/student/edit/', pago.student_id]">
                                     {{pago.student_name}}
                                 </a>
                             </th>
