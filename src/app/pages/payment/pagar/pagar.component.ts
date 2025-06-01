@@ -38,7 +38,6 @@ export class PagarComponent implements OnInit {
   metodo!: string;
   usuario: Usuario;
   error!: string;
-  pago_id!: number;
   deuda: any;
   pagoSeleccionado!: Payment;
   paymentMethods!: PaymentMethod[]|null;
@@ -74,7 +73,7 @@ export class PagarComponent implements OnInit {
     this.getTiposdepagos();
     this.activatedRoute.params.subscribe((resp: any) => {
       // console.log(resp);
-      this.pago_id = resp.id;
+      this.student_id = resp.id;
     });
     
     this.usuario = this.authService.user;
@@ -97,7 +96,7 @@ export class PagarComponent implements OnInit {
   getInfoPago() {
     this.isLoading = true;
     this.paymentService
-      .getPagoById(this.pago_id)
+      .getPagosPendingbyStudent(this.student_id)
       .subscribe((resp: any) => {
         this.isLoading = false;
         // console.log(resp);

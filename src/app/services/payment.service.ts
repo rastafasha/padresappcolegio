@@ -107,9 +107,9 @@ export class PaymentService {
         map((resp:{ok: boolean, payments: Payment}) => resp.payments)
         );
   }
-  getPagosPendingbyUser(id:number): Observable<any> {
+  getPagosPendingbyStudent(id:number): Observable<any> {
 
-    const url = `${baseUrl}/payment/pendientesbyParent/${id}`;
+    const url = `${baseUrl}/payment/pendientesbyStudent/${id}`;
     return this.http.get<any>(url, this.headers)
       .pipe(
         map((resp:{ok: boolean, payments: Payment}) => resp.payments)
