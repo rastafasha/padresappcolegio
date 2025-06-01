@@ -76,14 +76,14 @@ export class PaymentDetailComponent {
   }
   getParent(){
     this.parentService.getUserById(this.parent_id).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
       this.parent = resp.representante;
 
     })
   }
   getStudent(){
     this.studentService.getUserById(this.student_id).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
       this.student = resp.student;
     })
   }
@@ -92,22 +92,5 @@ export class PaymentDetailComponent {
     this.location.back(); // <-- go back to previous location on cancel
   }
 
-  cambiarStatus(data:any){
-    const VALUE = data.status;
-    console.log(VALUE);
-    
-    this.paymentService.updateStatus(data, data.id).subscribe(
-      resp =>{
-
-        console.log(resp);
-        // Swal.fire('Actualizado', `actualizado correctamente`, 'success');
-        // this.toaster.open({
-        //   text:'Producto Actualizado!',
-        //   caption:'Mensaje de Validación',
-        //   type:'success',
-        // })
-        this.ngOnInit();
-      }
-    )
-  }
+  
 }

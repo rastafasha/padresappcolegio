@@ -46,7 +46,7 @@ export class RecentpaymentsComponent {
   ngOnInit(): void {
     this.getDeudas();
     window.scrollTo(0, 0);
-    console.log(this.user);
+    // console.log(this.user);
     // this.getPagos_list();
   }
 
@@ -57,7 +57,7 @@ export class RecentpaymentsComponent {
       this.student_with_debt = res.students_with_debt;
       (error:any) => (this.error = error);
       this.isLoading = false;
-        console.log(this.student_with_debt);
+        // console.log(this.student_with_debt);
        
     })
   }
@@ -85,10 +85,10 @@ export class RecentpaymentsComponent {
 
   cambiarStatus(data: any) {
     const VALUE = data.status;
-    console.log(VALUE);
+    // console.log(VALUE);
 
     this.paymentService.updateStatus(data, data.id).subscribe((resp) => {
-      console.log(resp);
+      // console.log(resp);
       // Swal.fire('Actualizado', `actualizado correctamente`, 'success');
       // this.toaster.open({
       //   text:'Producto Actualizado!',

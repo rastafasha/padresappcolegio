@@ -46,7 +46,7 @@ export class HeaderComponent {
     this.authService.getLocalDarkMode();
     this.user = this.authService.getUser();
     // this.getProfile();
-    console.log(this.user);
+    // console.log(this.user);
     const lang = localStorage.getItem('lang');
     if (lang) {
       this.activeLang = lang;

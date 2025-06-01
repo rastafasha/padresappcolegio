@@ -49,7 +49,7 @@ export class StatuspagosComponent {
         this.student_with_debt = resp.students_with_debt
         this.isLoading = false;
 
-        console.log(this.student_with_debt);
+        // console.log(this.student_with_debt);
       })
     }
 

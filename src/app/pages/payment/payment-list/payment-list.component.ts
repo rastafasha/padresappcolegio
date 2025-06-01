@@ -87,7 +87,7 @@ export class PaymentListComponent {
             if (payment.student_id !== undefined) {
               this.studentService.getUserById(payment.student_id).subscribe((res: any) => {
                 this.student = res;
-                console.log(this.student);
+                // console.log(this.student);
 
               });
             }
@@ -118,10 +118,10 @@ export class PaymentListComponent {
 
     cambiarStatus(data: any) {
     const VALUE = data.status;
-    console.log(VALUE);
+    // console.log(VALUE);
 
     this.paymentService.updateStatus(data, data.id).subscribe((resp) => {
-      console.log(resp);
+      // console.log(resp);
       // Swal.fire('Actualizado', `actualizado correctamente`, 'success');
       // this.toaster.open({
       //   text:'Producto Actualizado!',

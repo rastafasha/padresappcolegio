@@ -1,15 +1,19 @@
 <app-header></app-header>
-<div class="row animated fadeIn fast" *ngIf="cargando">
-    <!-- <app-loading ></app-loading> -->
-</div>
-<div class="container user animated fadeInUp" style="margin-top: 100px;">
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="container user animated fadeInUp" style="margin-top: 100px;" *ngIf="!isLoading">
     <app-backButtn [pageTitle]="pageTitle"></app-backButtn>
 
     <div class="row">
         <div class="col-12 col-sm-6">
             <div class="card recibo">
                 <h3 class="text-center">Recibo de Cobro</h3>
-                <div class="pt-3">
+                <div class="pt-3" 
+                    style="display: flex
+;
+    flex-direction: column;
+    align-items: baseline;
+    padding: 10px;"
+                >
                     <p><b>Estudiante:</b> {{student.name}} {{student.surname}}</p>
                     <p><b>Matricula:</b> {{matricula|currency}}</p>
                     <p><b>Deuda:</b> {{deuda|currency}}</p>

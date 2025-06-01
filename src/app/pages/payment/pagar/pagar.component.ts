@@ -22,14 +22,14 @@ import { TasabcvService } from '../../../services/tasabcv.service';
   selector: 'app-pagar',
   imports:[CommonModule, NgIf, NgFor, FormsModule,ReactiveFormsModule, 
     HeaderComponent,
-    MenuFooterComponent, BackButtnComponent
+    MenuFooterComponent, BackButtnComponent, LoadingComponent
   ],
   templateUrl: './pagar.component.html',
   styleUrls: ['./pagar.component.css'],
 })
 export class PagarComponent implements OnInit {
   public PaymentRegisterForm!: FormGroup;
-  public cargando: boolean = true;
+  public isLoading: boolean = true;
   public cargandoPago: boolean = true;
   pageTitle = 'Pagar';
   public text_validation: string = '';
@@ -79,34 +79,27 @@ export class PagarComponent implements OnInit {
     
     this.usuario = this.authService.user;
     // console.log(this.usuario);
-    this.getInfoUser();
-    this.getInfoCita();
+    this.getInfoPago();
     this.validarFormulario();
     this.getUltimoPrecioTasaBcv();
   }
 
-  getInfoUser(){
-    // this.userService.showPatientByNdoc(this.user.n_doc).subscribe((resp:any)=>{
-    //   // this.patient = resp.patient;
-    //   this.user = resp.user;
-    // })
-  }
 
   getUltimoPrecioTasaBcv(){
     this.tasaBcvService.getTasas().subscribe((resp:any)=>{
       this.precio_dia = resp[0].precio_dia
       this.precio_fecha = resp[0].created_at
 
-      console.log(resp);
+      // console.log(resp);
     })
   }
 
-  getInfoCita() {
-    this.cargando = true;
+  getInfoPago() {
+    this.isLoading = true;
     this.paymentService
       .getPagoById(this.pago_id)
       .subscribe((resp: any) => {
-        this.cargando = false;
+        this.isLoading = false;
         // console.log(resp);
         this.deuda = resp.monto;
         this.student_id = resp.student_id;
@@ -119,7 +112,7 @@ export class PagarComponent implements OnInit {
 
   getStuden(){
     this.studentService.getUserById(this.student_id).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
       this.student = resp.student;
       this.matricula = resp.student.matricula
     })
@@ -175,14 +168,10 @@ export class PagarComponent implements OnInit {
     formData.append('nombre', this.usuario.name);
     formData.append('email', this.usuario.email);
     formData.append('imagen', this.FILE_AVATAR);
-    // if (this.FILE_AVATAR) {
-    //   formData.append("imagen", this.FILE_AVATAR);
-    // }
-    // formData.append('fecha', this.PaymentRegisterForm.get('fecha').value);
     formData.append('status', 'PENDING');
 
     //crear
-    this.cargando = true;
+    this.isLoading = true;
     // Swal.fire('Procesando', `procesando Pago`, 'warning');
     this.paymentService.pagarDeuda(formData,this.parent_id, this.student_id).subscribe((resp: any) => {
       this.pagoSeleccionado = resp;
@@ -190,7 +179,7 @@ export class PagarComponent implements OnInit {
       // console.log(this.pagoSeleccionado);
       // this.emptyCart();
 
-      this.cargando = false;
+      this.isLoading = false;
 
       if (resp.message == 403) {
         // Swal.fire('Actualizado', this.text_validation, 'success');
