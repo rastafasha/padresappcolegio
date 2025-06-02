@@ -107,4 +107,16 @@ export class StudentListComponent {
     openPaymentsModal(student: Student): void {
       this.selectedStudentProfile = student;
     }
+
+    eliminarUser(user:Student){
+    this.studentService.deleteById(user.id).subscribe(
+      response =>{
+        this.getStudents();
+      },
+      error=>{
+        this.msm_error = 'No se pudo eliminar el curso, vuelva a intentar.'
+      }
+      );
+      this.ngOnInit();
+  }
 }

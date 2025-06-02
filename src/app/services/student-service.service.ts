@@ -87,8 +87,8 @@ export class StudentService {
         return this.http.post(url, data, this.headers);
       }
     
-      deleteById(user:Student): Observable<any> {
-        const url = `${baseUrl}/student/destroy/${user}`;
+      deleteById(id:number): Observable<any> {
+        const url = `${baseUrl}/student/destroy/${id}`;
         return this.http.delete(url, this.headers)
       }
   

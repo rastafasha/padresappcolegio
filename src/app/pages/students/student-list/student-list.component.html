@@ -26,7 +26,7 @@
               <button type="button" style="display: flex
 ;
     height: 40px;" class="btn btn-primary" [routerLink]="['/student/add']" >
-                                add
+                                Agregar
                             </button>
         </div>
         
@@ -53,25 +53,28 @@
                 </thead>
                 <tbody>
                     <tr
-                        *ngFor="let studentprofile of students  ; let i = index;">
+                        *ngFor="let student of students  ; let i = index;">
 
                         <td>
-                            <img [src]="studentprofile.avatar| imagenPipe: 'students' "  class="imagecircle shadow" alt="">
+                            <img [src]="student.avatar| imagenPipe: 'students' "  class="imagecircle shadow" alt="">
                         </td>
-                        <td><a [routerLink]="['/student/edit/', studentprofile.id]">{{studentprofile.name}} {{studentprofile.surname}}</a></td>
-                        <!-- <td>{{studentprofile.name}} {{studentprofile.surname}} </td> -->
-                        <td>{{studentprofile.n_doc}} </td>
-                        <!-- <td>{{studentprofile.gender}} </td> -->
+                        <td><a [routerLink]="['/student/edit/', student.id]">{{student.name}} {{student.surname}}</a></td>
+                        <!-- <td>{{student.name}} {{student.surname}} </td> -->
+                        <td>{{student.n_doc}} </td>
+                        <!-- <td>{{student.gender}} </td> -->
                         <td>
-                            <span class="badge bg-primary" *ngIf="studentprofile.gender === 1">M</span>
-                            <span class="badge bg-danger" *ngIf="studentprofile.gender === 2">F</span>
+                            <span class="badge bg-primary" *ngIf="student.gender === 1">M</span>
+                            <span class="badge bg-danger" *ngIf="student.gender === 2">F</span>
                         </td>
-                        <td>{{studentprofile.birth_date|date}} </td>
-                        <td>{{studentprofile.school_year}} </td>
-                        <td>{{studentprofile.section | uppercase}} </td>
+                        <td>{{student.birth_date|date}} </td>
+                        <td>{{student.school_year}} </td>
+                        <td>{{student.section | uppercase}} </td>
                         <td class="text-nowrap text-center">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#studentModal" (click)="openPaymentsModal(studentprofile)">
-                                Pagos
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#studentModal" (click)="openPaymentsModal(student)">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger"  (click)="eliminarUser(student)">
+                                <i class="fa fa-trash"></i>
                             </button>
                         </td>
 
