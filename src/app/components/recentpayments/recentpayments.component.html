@@ -2,7 +2,7 @@
 <app-loading *ngIf="isLoading"></app-loading>
 <div *ngIf="!isLoading" class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
 
-    <section class="section dashboard">
+    <section class="section dashboard" *ngIf="student_with_debt">
         <div class="row">
             <!-- buscador -->
                 <form class="form-horizontal">
