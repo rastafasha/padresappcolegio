@@ -46,7 +46,7 @@ export class RecentpaymentsComponent {
   ngOnInit(): void {
     setTimeout(()=>{
       this.getDeudas();
-    },3000)
+    },2000)
     window.scrollTo(0, 0);
     // console.log(this.user);
     // this.getPagos_list();

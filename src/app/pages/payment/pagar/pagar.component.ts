@@ -83,6 +83,14 @@ export class PagarComponent implements OnInit {
     this.validarFormulario();
     this.getUltimoPrecioTasaBcv();
   }
+  getTiposdepagos(): void {
+    // return this.planesService.carga_info();
+    this.paymentMethodService.getPaymentmethodsActivos().subscribe((resp:any) => {
+      this.paymentMethods = resp.tiposdepagos;
+      // console.log(resp);
+      (error:any) => (this.error = error);
+    });
+  }
 
 
   getUltimoPrecioTasaBcv(){
@@ -109,7 +117,7 @@ export class PagarComponent implements OnInit {
 
   getStuden(){
     this.studentService.getUserById(this.student_id).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
       this.student = resp.student;
       this.matricula = resp.student.matricula
     })
@@ -212,14 +220,7 @@ export class PagarComponent implements OnInit {
     this.metodo = value;
   }
 
-  getTiposdepagos(): void {
-    // return this.planesService.carga_info();
-    this.paymentMethodService.getPaymentmethodsActivos().subscribe((res:any) => {
-      this.paymentMethods = res.tiposdepagos;
-      (error:any) => (this.error = error);
-      // console.log(res);
-    });
-  }
+  
 
 
 }

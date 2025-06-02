@@ -61,7 +61,7 @@ export class PaymentmethodService {
       const url = `${baseUrl}/paymentmethods/activos`;
       return this.http.get<any>(url,this.headers)
         .pipe(
-          map((resp:{ok: boolean, recientes: PaymentMethod}) => resp.recientes)
+          map((resp:{ok: boolean, activos: PaymentMethod}) => resp)
         )
     }
     getPaymentmethodsDestacados() {
