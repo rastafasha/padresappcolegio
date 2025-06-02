@@ -25,13 +25,8 @@
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
     <div class="card recent-sales overflow-auto" *ngIf="!isLoading">
-
-
         <div class="card-body" >
-            <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Transacciones <span>| Todas</span>
-            </h5>
-
-            <table class="table table-borderless datatable">
+            <table class="table table-borderless datatable table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Imagen</th>

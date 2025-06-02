@@ -16,7 +16,7 @@ import { Student } from '../../models/student';
     CommonModule, FormsModule, NgIf, NgFor, LoadingComponent, RouterLink
   ],
   templateUrl: './recentpayments.component.html',
-  styleUrls: ['./recentpayments.component.css'],
+  styleUrls: ['./recentpayments.component.scss'],
 })
 export class RecentpaymentsComponent {
   title = 'Pagos';
@@ -55,7 +55,7 @@ export class RecentpaymentsComponent {
   
   getDeudas(): void {
     this.isLoading = true;
-    this.paymentService.getDeudaPendingbyUser(this.user.id).subscribe((res: any) => {
+    this.paymentService.getPagosStatusbyUser(this.user.id).subscribe((res: any) => {
       this.student_with_debt = res.students_with_debt;
       (error:any) => (this.error = error);
       this.isLoading = false;

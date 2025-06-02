@@ -23,7 +23,7 @@
                 </form>
                 <!-- buscador -->
         </div>
-        <div class="card recent-sales overflow-auto">
+        <!-- <div class="card recent-sales overflow-auto">
             <div class="card-body">
                 <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Pendientes
                 </h5>
@@ -64,10 +64,28 @@
 
                     </tbody>
                 </table>
-                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
             </div>
 
-        </div>
+        </div> -->
+
+
+         <ng-container *ngFor="let pago of student_with_debt">
+
+                  <div class="tarifa">
+
+                    <div class="info_tarifa">
+                      <p><a [routerLink]="['/student/edit/', pago.student_id]">
+                                    {{pago.student_name}}
+                                </a></p>
+                    <h6 style="margin:0;padding:0; color:#333">M:{{pago.matricula|currency}}</h6>
+                    <h6 style="margin:0;padding:0; color:#333">D:{{pago.debt_amount|currency}}</h6>
+                    </div>
+                    <button type="button" class="btn btn-primary"
+                                    [routerLink]="['/pagar/',pago.student_id]">
+                                    Pagar
+                                </button>
+                  </div>
+                </ng-container>
     </section>
 </div>
 <!-- End #main-->
