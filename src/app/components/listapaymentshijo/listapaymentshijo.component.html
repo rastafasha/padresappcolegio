@@ -10,9 +10,7 @@
             <div class="modal-body">
 
                 <div class="col-12">
-                    <div class="card recent-sales overflow-auto">
-
-                        <div class="row">
+                    <div class="row">
                             <div class="col-xs-12">
                                 <!-- buscador -->
                                 <form class="form-horizontal">
@@ -37,6 +35,9 @@
                                 <!-- buscador -->
                             </div>
                         </div>
+                    <div class="card recent-sales overflow-auto">
+
+                        
                         <app-loading *ngIf="isLoading"></app-loading>
                         <div class="card-body" *ngIf="!isLoading">
                             
@@ -106,11 +107,8 @@
                                                 *ngIf="pago.status === 'PENDING'">Pendiente</span>
                                             <span class="badge bg-danger"
                                                 *ngIf="pago.status === 'REJECTED'">Rechazado</span>
-                                            <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                                         </td>
                                         <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
-                                        
-                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -121,7 +119,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

@@ -1,8 +1,8 @@
 <!-- =======| Main |======= -->
 <app-loading *ngIf="isLoading"></app-loading>
-<div *ngIf="!isLoading" class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
+<div *ngIf="!isLoading && student_with_debt" class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
 
-    <section class="section dashboard" *ngIf="student_with_debt">
+    <section class="section dashboard" >
         <div class="row">
             <!-- buscador -->
                 <form class="form-horizontal">
