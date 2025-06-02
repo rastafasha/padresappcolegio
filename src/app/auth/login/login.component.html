@@ -60,14 +60,14 @@
             <i class="fas fa-lock"></i>
             <input type="password" formControlName="confirmPassword" placeholder="Comfirmar Password" />
           </div>
-          <!-- <div class="form-group row">
+          <div class="form-group row">
             <div class="col-md-12">
                 <div class="checkbox checkbox-primary p-t-0">
                     <input id="checkbox-signup" formControlName="terminos" type="checkbox">
-                    <label for="checkbox-signup"> Acepto las <a href="#"   data-toggle="modal" data-target="#exampleModal">Condiciones </a></label>
+                    <label for="checkbox-signup"> Acepto las <a href="javascript:;"  data-bs-toggle="modal" data-bs-target="#condicionesModal">Condiciones </a></label>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="row">
             <div class="col text-danter">
                 <p *ngIf="campoNoValido('username')"><span>*</span> El username es obligatorio</p>
@@ -117,3 +117,27 @@
     </div>
   </div>
   <!-- <app-modal-condiciones></app-modal-condiciones> -->
+
+   <div class="modal fade" id="condicionesModal" tabindex="-1" aria-labelledby="condicionesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+<h5 class="modal-title" id="condicionesModalLabel">Términos y Condiciones</h5>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <h1>Términos de servicio</h1>
+                <p>1.Introducción Los presentes términos y condiciones regulan el uso de este sitio web y los servicios ofrecidos a través del mismo. Al acceder y utilizar este sitio, usted acepta cumplir con estos términos. 
+                  2. Exclusividad de Contenido Las clases implementadas en este sitio web son de exclusividad de los profesores que las imparten, al igual que su contenido. Cualquier reproducción, distribución o uso no autorizado de dicho contenido está estrictamente prohibido. 
+                  3. Uso del Sitio El usuario se compromete a utilizar el sitio web de manera responsable y a no realizar actividades que puedan dañar la imagen, los intereses o los derechos de la empresa o de terceros. 
+                  4. Modificaciones La empresa se reserva el derecho de modificar estos términos y condiciones en cualquier momento. Las modificaciones serán efectivas una vez publicadas en el sitio web. 
+                  5. Aceptación de Términos El uso continuado del sitio web después de la publicación de cambios en estos términos implica la aceptación de dichos cambios. 
+                  6. Contacto Para cualquier consulta relacionada con estos términos y condiciones, por favor contáctenos a través de la información proporcionada en el sitio web.</p>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
