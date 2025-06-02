@@ -168,7 +168,7 @@ export class PagarComponent implements OnInit {
     formData.append('status', 'PENDING');
 
     //crear
-    // this.isLoading = true;
+    this.isLoading = true;
     // Swal.fire('Procesando', `procesando Pago`, 'warning');
     this.paymentService.pagarDeuda(formData,this.parent_id, this.student_id).subscribe((resp: any) => {
       this.pagoSeleccionado = resp;
@@ -200,7 +200,7 @@ export class PagarComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
-        //  this.isLoading = false;
+         this.isLoading = false;
         this.router.navigateByUrl(`/app/mis-pagos`);
       }
     });
