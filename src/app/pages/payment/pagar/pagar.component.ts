@@ -214,7 +214,7 @@ export class PagarComponent implements OnInit {
 
   getTiposdepagos(): void {
     // return this.planesService.carga_info();
-    this.paymentMethodService.getPaymentmethods().subscribe((res:any) => {
+    this.paymentMethodService.getPaymentmethodsActivos().subscribe((res:any) => {
       this.paymentMethods = res;
       (error:any) => (this.error = error);
       // console.log(res);
