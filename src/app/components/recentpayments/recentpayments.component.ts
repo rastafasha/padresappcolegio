@@ -30,6 +30,7 @@ export class RecentpaymentsComponent {
   query: string = '';
   student_id!:number;
   student!:Student;
+  parent_has_debt!:boolean;
 
   student_with_debt: students_with_debt[] = [];
 
@@ -57,6 +58,7 @@ export class RecentpaymentsComponent {
     this.isLoading = true;
     this.paymentService.getPagosStatusbyUser(this.user.id).subscribe((res: any) => {
       this.student_with_debt = res.students_with_debt;
+      this.parent_has_debt = res.parent_has_debt;
       (error:any) => (this.error = error);
       this.isLoading = false;
         // console.log(this.student_with_debt);

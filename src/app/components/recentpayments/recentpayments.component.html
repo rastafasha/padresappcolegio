@@ -1,6 +1,11 @@
 <!-- =======| Main |======= -->
 <app-loading *ngIf="isLoading"></app-loading>
-<div *ngIf="!isLoading && student_with_debt" class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
+<div *ngIf="!isLoading && parent_has_debt === false">
+    <p class="text-center">
+        No posees pagos pendientes.
+    </p>
+</div>
+<div *ngIf="!isLoading && parent_has_debt === true" class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
 
     <section class="section dashboard" >
         <div class="row">

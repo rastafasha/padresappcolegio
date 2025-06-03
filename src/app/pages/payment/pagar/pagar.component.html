@@ -63,7 +63,7 @@
                                 <div class="datos" *ngFor="let pago of paymentMethods">
                                     <p><b>{{pago.tipo | uppercase}}</b></p>
                                     <div class="clear"></div>
-                                    <p><b>Método:</b> {{pago.tipo}}</p>
+                                    <!-- <p><b>Método:</b> {{pago.tipo}}</p> -->
                                     <p *ngIf="pago.email"><b>Correo:</b> {{pago.email}}</p>
                                     <p *ngIf="pago.bankName"><b>Banco:</b> {{pago.bankName}}</p>
                                     <p *ngIf="pago.bankAccount"><b>No.Cuenta:</b> {{pago.bankAccount}}</p>
