@@ -1,6 +1,8 @@
 {
-  "name": "padresappcolegio",
-  "short_name": "padresappcolegio",
+  "name": "PayCole | Padres",
+  "short_name": "PayCole",
+  "categories": ["school", "production"],
+  "description": "App para administrar Colegio",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
