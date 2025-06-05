@@ -1,7 +1,9 @@
 <app-header></app-header>
 <div class="container user">
     <app-backButtn [pageTitle]="pageTitle"></app-backButtn>
-    <app-bar-chart [payments]="payments"></app-bar-chart>
+    <div class="mb-4">
+        <app-bar-chart [payments]="payments"></app-bar-chart>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <!-- buscador -->
@@ -25,7 +27,7 @@
         </div>
     </div>
     <app-loading *ngIf="isLoading"></app-loading>
-    <div class="card recent-sales overflow-auto" *ngIf="!isLoading">
+    <div class="card recent-sales overflow-auto border-radio" *ngIf="!isLoading">
         <div class="card-body" >
             <table class="table table-borderless datatable table-striped">
                 <thead>

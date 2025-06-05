@@ -148,6 +148,10 @@ img {
     color: var(--red)
 }
 
+.border-radio{
+    border-radius: 16px !important;
+}
+
 .logo {
     font-family: var(--fontFamily);
     color: #000;
