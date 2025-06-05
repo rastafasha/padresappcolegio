@@ -8,26 +8,7 @@
 <div *ngIf="!isLoading && parent_has_debt === true" class="container animated fadeInUp" id="main" class="main" role="main" name="profile">
 
     <section class="section dashboard" >
-        <div class="row">
-            <!-- buscador -->
-                <form class="form-horizontal">
-                    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-                        <div class=" d-flex justify-content-end">
-                            <!-- <input type="search" name="search" type="text" class="form-control col-xs-12"
-                                placeholder="Buscar.." [(ngModel)]="query" aria-describedby="button-addon1"
-                                class="form-control border-0 bg-light"> -->
-                            <div class="  ">
-                                <!-- <button id="button-addon1" type="submit" class="btn btn-link text-primary circle"
-                                    (click)="search()" name="submit" data-toggle="tooltip" title="mostrar todos"><i
-                                        class="fa fa-search"></i></button> -->
-                                <a href="javascript:;" (click)="PageSize()"
-                                    class="btn btn-primary doctor-refresh ms-2 circle "><i class="fa fa-refresh"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <!-- buscador -->
-        </div>
+        
         <!-- <div class="card recent-sales overflow-auto">
             <div class="card-body">
                 <h5 class="card-title"> <i class="bi bi-currency-exchange"> </i> Pendientes
@@ -85,7 +66,7 @@
                     <h6 style="margin:0;padding:0; color:#333">M:{{pago.matricula|currency}}</h6>
                     <h6 style="margin:0;padding:0; color:#333">D:{{pago.debt_amount|currency}}</h6>
                     </div>
-                    <button type="button" class="btn btn-primary"
+                    <button  type="button" class="btn btn-primary"
                                     [routerLink]="['/pagar/',pago.student_id]">
                                     Pagar
                                 </button>

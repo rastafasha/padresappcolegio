@@ -1,3 +1,53 @@
-<p>student-detail works!</p>
-<!-- <app-header></app-header>
-<app-menu-footer></app-menu-footer> -->
+<div class="tab-content-set">
+          <ul class="nav">
+              <li>
+                  <a href="#" onclick="return false;" [ngClass]="{'active': option_selectedd == 1}" (click)="optionSelected(1)">Calificaciones</a>
+              </li>
+              <li>
+                  <a href="#" onclick="return false;" [ngClass]="{'active': option_selectedd == 2}" (click)="optionSelected(2)">Examenes</a>
+              </li>
+          </ul>
+      </div>
+      <div class="mt-4 mb-2">
+        <app-line-chart [calificaciones]="calificaciones ?? []"></app-line-chart>
+      </div>
+      <div class="row" *ngIf="option_selectedd == 1">
+        <app-loading *ngIf="isLoading"></app-loading>
+    <div class="card recent-sales overflow-auto" *ngIf="!isLoading">
+
+        <div class="card-body">
+
+            <table class="table table-borderless datatable table-striped">
+                <thead>
+                    <tr>
+                        <th>Materia</th>
+                        <th>Puntaje</th>
+                        <!-- <th>Semestre</th> -->
+                        <th>Año Escolar</th>
+                        <!-- <th class="text-nowrap">Acciones</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-left: 2px solid cornflowerblue; border-spacing: 2px;"
+                        *ngFor="let califi of calificaciones  ; let i = index;">
+
+                    
+                        <td>{{califi.materia.name}} </td>
+                        <td>{{califi.grade}} </td>
+                        <!-- <td>{{califi.semestre}} </td> -->
+                        <td>{{califi.anio_escolar}} </td>
+                        
+                    </tr>
+                </tbody>
+
+            </table>
+
+            <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+
+        </div>
+
+    </div>
+      </div>
+      <div class="row" *ngIf="option_selectedd == 2">
+        <app-examenes-student [profileSeleccionado]="profileSeleccionado"></app-examenes-student>
+      </div>

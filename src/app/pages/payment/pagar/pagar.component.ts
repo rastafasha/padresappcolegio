@@ -118,8 +118,13 @@ export class PagarComponent implements OnInit {
   getStuden(){
     this.studentService.getUserById(this.student_id).subscribe((resp:any)=>{
       // console.log(resp);
-      this.student = resp.student;
-      this.matricula = resp.student.matricula
+      if (resp && resp.student) {
+        this.student = resp.student;
+        this.matricula = resp.student.matricula;
+      } else {
+        this.student = {} as Student;
+        this.matricula = 0;
+      }
     })
   }
 
@@ -127,6 +132,7 @@ export class PagarComponent implements OnInit {
     this.PaymentRegisterForm = this.fb.group({
       id: [''],
       metodo: ['', Validators.required],
+      phone: [''],
       bank_name: ['',Validators.required],
       bank_destino: ['',Validators.required],
       monto: ['', Validators.required],
@@ -154,6 +160,7 @@ export class PagarComponent implements OnInit {
   updateForm() {
 
     const formData = new FormData();
+    formData.append('phone', this.PaymentRegisterForm.get('phone')?.value);
     formData.append('metodo', this.PaymentRegisterForm.get('metodo')?.value);
     formData.append(
       'bank_name',

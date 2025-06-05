@@ -14,30 +14,32 @@ import { LoadingComponent } from '../../../shared/loading/loading.component';
 import { StudentService } from '../../../services/student-service.service';
 import { Student } from '../../../models/student';
 import { ImagenPipe } from "../../../pipes/imagen.pipe";
+import { StudentDetailComponent } from "../student-detail/student-detail.component";
 @Component({
   selector: 'app-student-edit',
   imports: [
     CommonModule,
     HeaderComponent,
-        MenuFooterComponent, 
-        BackButtnComponent,
-        ReactiveFormsModule,
-        FormsModule,
-        LoadingComponent,
-        TranslateModule,
-        // ImagenPipe
-        
-  ],
+    MenuFooterComponent,
+    BackButtnComponent,
+    ReactiveFormsModule,
+    FormsModule,
+    LoadingComponent,
+    TranslateModule,
+    StudentDetailComponent
+],
   templateUrl: './student-edit.component.html',
   styleUrl: './student-edit.component.scss'
 })
 export class StudentEditComponent {
-  pageTitle= 'Editar Estudiante';
+  pageTitle= 'Estudiante';
     Title!:string;
     public iswhatsapp : boolean = false;
     selectedValueCode = '';
     
-  
+    option_selected:number = 1;
+  solicitud_selected:any = null;
+
     public isLoading:boolean = false;
       loadingTitle!:string;
   
@@ -102,6 +104,17 @@ export class StudentEditComponent {
         
         
       }
+
+      optionSelected(value:number){
+      this.option_selected = value;
+      if(this.option_selected === 1){
+
+        this.ngOnInit();
+      }
+      if(this.option_selected === 2){
+        this.solicitud_selected = null;
+      }
+    }
   
   
       getProfile(id:number){
@@ -143,7 +156,7 @@ export class StudentEditComponent {
               n_doc: res.student.n_doc,
               usuario: this.user.id,
             });
-            this.profileSeleccionado = res;
+            this.profileSeleccionado = res.student;
             this.student_id = res.student.id;
             console.log('profileSeleccionado',res);
             // this.getProfile();

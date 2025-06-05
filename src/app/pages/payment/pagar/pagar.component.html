@@ -182,11 +182,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="div4">
-                                                        <div class="form-group " *ngIf="!deuda">
+                                                        <!-- <div class="form-group " *ngIf="!deuda">
                                                             <label for="">Monto</label>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
-                                                        </div>
+                                                        </div> -->
                                                         <div class="form-group "
                                                             *ngIf="deuda && metodo==='Transferencia Dólares'">
                                                             <label for="">Monto</label>
@@ -222,7 +222,7 @@
                                                     </div>
                                                 </div>
                                                 <!-- pago movil -->
-                                                <div class="divform" *ngIf="metodo == 'Pago Móvil'">
+                                                <div class="divform" *ngIf="deuda && metodo === 'Pago Móvil'">
                                                     <div class="div2">
                                                         <div class="form-group ">
                                                             <label for="">Nombre Banco </label>
@@ -269,7 +269,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="div5">
-                                                        <div class="form-group " *ngIf="!deuda">
+                                                        <!-- <div class="form-group " >
                                                             <label for="">Monto</label>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
@@ -281,12 +281,23 @@
                                                                 }
                                                                 </div>
                                                              }
-                                                        </div>
-                                                        <div class="form-group " *ngIf="deuda">
-                                                            <label for="">Monto a pagar:</label>
-                                                            <p>{{deuda*precio_dia|currency:'Bs.'}}</p>
+                                                        </div> -->
+                                                        <div class="form-group "
+                                                            >
+                                                            <label for="">Monto</label>
+                                                            <p>Colocar Monto a pagar:
+                                                                <b>{{deuda*precio_dia|currency:'Bs.'}}</b>
+                                                            </p>
                                                             <input type="text" formControlName="monto"
                                                                 class="form-control">
+                                                                @if(PaymentRegisterForm.controls['monto'].touched){
+                          
+                                                                <div class="text-danger">
+                                                                @if(PaymentRegisterForm.controls['monto'].errors?.['required']){
+                                                                    <span >{{'Campo Requerido'}}</span>
+                                                                }
+                                                                </div>
+                                                             }
                                                         </div>
                                                     </div>
                                                 </div>

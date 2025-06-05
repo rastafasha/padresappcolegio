@@ -15,11 +15,13 @@ import { ListapaymentshijoComponent } from '../../../components/listapaymentshij
 import {  RouterLink } from '@angular/router';
 import { ImagenPipe } from "../../../pipes/imagen.pipe";
 import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
+import { PieChart2Component } from '../../../components/charts/pie-chart2/pie-chart2.component';
 @Component({
   selector: 'app-student-list',
   imports: [HeaderComponent,MenuFooterComponent,
     CommonModule, NgFor,NgIf,LoadingComponent, ReactiveFormsModule, FormsModule,
-    ListapaymentshijoComponent, RouterLink, ImagenPipe, BackButtnComponent
+    ListapaymentshijoComponent, RouterLink, ImagenPipe, BackButtnComponent,
+    PieChart2Component
   ],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.scss'
@@ -31,7 +33,7 @@ export class StudentListComponent {
   
     loading = false;
     usersCount = 0;
-    students!: Student[]|null;
+    students!: Student[];
     studentprofile!: Student;
     roles:any;
   
