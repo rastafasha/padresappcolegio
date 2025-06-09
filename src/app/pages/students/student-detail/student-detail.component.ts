@@ -11,6 +11,7 @@ import { CalificacionService } from '../../../services/calificacion.service';
 import { Student } from '../../../models/student';
 import { Calificacion } from '../../../models/calificacion';
 import { ExamenesStudentComponent } from '../../../components/examenes-student/examenes-student.component';
+import { CalendarioTComponent } from '../../../components/calendario-t/calendario-t.component';
 
 @Component({
   selector: 'app-student-detail',
@@ -22,7 +23,8 @@ import { ExamenesStudentComponent } from '../../../components/examenes-student/e
           TranslateModule,
           ExamenesStudentComponent,
           NgFor,
-          LineChartComponent
+          LineChartComponent,
+          CalendarioTComponent
           // ImagenPipe
           
     ],

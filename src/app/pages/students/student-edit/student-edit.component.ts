@@ -158,7 +158,7 @@ export class StudentEditComponent {
             });
             this.profileSeleccionado = res.student;
             this.student_id = res.student.id;
-            console.log('profileSeleccionado',res);
+            // console.log('profileSeleccionado',res);
             // this.getProfile();
           }
   

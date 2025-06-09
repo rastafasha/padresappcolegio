@@ -35,15 +35,15 @@
                         <th scope="col">Imagen</th>
                         <th scope="col">Referencia</th>
                         <!-- <th scope="col">Usuario</th> -->
-                        <th scope="col">Estudiante</th>
+                        <!-- <th scope="col">Estudiante</th>
                         <th scope="col">Banco Destino</th>
                         <th scope="col">Metodo</th>
                         <th scope="col">Monto </th>
                         <th scope="col">deuda</th>
-                        <th scope="col">Monto Pendiente</th>
+                        <th scope="col">Monto Pendiente</th> -->
                         <th scope="col">Status Deuda</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Fecha | Hora</th>
+                        <!-- <th scope="col">Fecha | Hora</th> -->
                         <!-- <th scope="col">Acciones</th> -->
                     </tr>
                 </thead>
@@ -55,7 +55,7 @@
                         <th scope="row"><a [routerLink]="['/payment-detail', pago.id]">{{pago.referencia}}</a>
                         </th>
                         <!-- <th><a [routerLink]="['/user/', pago.parent_id]">{{pago.parent_id}}</a></th> -->
-                        <th>{{pago?.student?.name}}</th>
+                        <!-- <th>{{pago?.student?.name}}</th>
                         <td>{{pago.bank_destino}}</td>
                         <td>{{pago.metodo}}</td>
                         <td>
@@ -84,7 +84,7 @@
                             <span *ngIf="pago.metodo ==='Transferencia Dólares'">
                                 {{pago.monto_pendiente|currency}}
                             </span>
-                        </td>
+                        </td> -->
                         <td>
                             <!-- {{pago.status_deuda}} -->
                             <span class="badge bg-success" *ngIf="pago.status_deuda !== 'DEUDA'">Pagado</span>
@@ -92,12 +92,17 @@
                         </td>
 
                         <td>
-                            <span class="badge bg-success" *ngIf="pago.status === 'APPROVED'">Aprobado</span>
-                            <span class="badge bg-primary" *ngIf="pago.status === 'PENDING'">Pendiente</span>
-                            <span class="badge bg-danger" *ngIf="pago.status === 'REJECTED'">Rechazado</span>
+                            <span class="badge bg-success" *ngIf="pago.status === 'APPROVED'">
+                                <i class="fa fa-check-circle" ></i>
+                            </span>
+                            <span class="badge bg-primary" *ngIf="pago.status === 'PENDING'">
+                                <i class="fa fa-coffee"></i>
+                            </span>
+                            <span class="badge bg-danger" *ngIf="pago.status === 'REJECTED'">
+                                <i class="fa fa-close"></i>
+                            </span>
                             <!-- <span class="badge bg-success">{{pago.status}}</span> -->
                         </td>
-                        <td>{{pago.created_at | date:'MMM d, y, h:mm:ss a'}}</td>
                         <!-- <td class="text-nowrap text-center">
                             <button *ngIf="pago.status === 'PENDING' || pago.status === 'REJECTED'" type="button" class="btn btn-primary"[routerLink]="['/pagar/',pago.id]" >
                                 Pagar

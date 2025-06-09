@@ -12,7 +12,7 @@ export class LineChartComponent implements OnChanges {
   @Input() calificaciones: Calificacion[] | undefined;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges called with calificaciones:', this.calificaciones);
+    // console.log('ngOnChanges called with calificaciones:', this.calificaciones);
     if (changes['calificaciones'] && this.calificaciones && this.calificaciones.length > 0) {
       this.createChart();
     }

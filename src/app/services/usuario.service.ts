@@ -27,11 +27,17 @@ export class UserService {
     return this.http.get(URL, {headers:headers});
   }
 
+  
   getCharacters(apiUrl:string = `${url_servicios}/users`):Observable<any> {
       return this.http.get(apiUrl).pipe(share())
   
     }
 
+  getMaestros(){
+    const headers = new HttpHeaders({'Authorization': 'Bearer'+this.authService.token})
+    const URL = url_servicios+'/users/maestros';
+    return this.http.get(URL, {headers:headers});
+  }
   listConfig(){
     const headers = new HttpHeaders({'Authorization': 'Bearer'+this.authService.token})
     const URL = url_servicios+'/users/config';

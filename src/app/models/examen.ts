@@ -11,7 +11,7 @@ export class Examen{
         title!:string;
         exam_date!:Date;
         puntaje!:number;
-        puntaje_letra!:string;
+        valor_examen!:number;
         created_at!:Date;
         updated_at!:Date;
 

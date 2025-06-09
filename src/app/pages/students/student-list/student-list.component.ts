@@ -16,6 +16,7 @@ import {  RouterLink } from '@angular/router';
 import { ImagenPipe } from "../../../pipes/imagen.pipe";
 import { BackButtnComponent } from '../../../shared/backButtn/backButtn.component';
 import { PieChart2Component } from '../../../components/charts/pie-chart2/pie-chart2.component';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-student-list',
   imports: [HeaderComponent,MenuFooterComponent,
@@ -111,14 +112,34 @@ export class StudentListComponent {
     }
 
     eliminarUser(user:Student){
-    this.studentService.deleteById(user.id).subscribe(
-      response =>{
-        this.getStudents();
-      },
-      error=>{
-        this.msm_error = 'No se pudo eliminar el curso, vuelva a intentar.'
-      }
-      );
-      this.ngOnInit();
+      Swal.fire({
+          title: "Esta Seguro?",
+          text: "Se perderán todos los datos!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si, Borrar!"
+        }).then((result) => {
+          if (result.isConfirmed) {
+             this.studentService.deleteById(user.id).subscribe(
+              response =>{
+                Swal.fire({
+                  title: "Borrado!",
+                  text: "Registro Eliminado.",
+                  icon: "success"
+                });
+                
+                this.getStudents();
+              },
+              error=>{
+                this.msm_error = 'No se pudo eliminar el curso, vuelva a intentar.'
+              }
+            );
+            
+          }
+        });
+   
+      // this.getStudents();
   }
 }

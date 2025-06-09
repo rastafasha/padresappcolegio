@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container user">
+<div class="container-fluid user">
     <app-backButtn [pageTitle]="pageTitle"></app-backButtn>
     <div class="row">
         <div class="col-xs-12" style="
@@ -42,9 +42,9 @@
                         <!-- <th>ID</th> -->
                         <th>Imagen</th>
                         <th>Nombre</th>
-                        <th>CI</th>
+                        <!-- <th>CI</th> -->
                         <th>Género</th>
-                        <th>Nacimiento</th>
+                        <!-- <th>Nacimiento</th> -->
                         <th>Grado</th>
                         <th>Sección</th>
                         <!-- <th>Option</th> -->
@@ -60,13 +60,13 @@
                         </td>
                         <td><a [routerLink]="['/student/edit/', student.id]">{{student.name}} {{student.surname}}</a></td>
                         <!-- <td>{{student.name}} {{student.surname}} </td> -->
-                        <td>{{student.n_doc}} </td>
+                        <!-- <td>{{student.n_doc}} </td> -->
                         <!-- <td>{{student.gender}} </td> -->
                         <td>
                             <span class="badge bg-primary" *ngIf="student.gender === 1">M</span>
                             <span class="badge bg-danger" *ngIf="student.gender === 2">F</span>
                         </td>
-                        <td>{{student.birth_date|date}} </td>
+                        <!-- <td>{{student.birth_date|date}} </td> -->
                         <td>{{student.school_year}} </td>
                         <td>{{student.section | uppercase}} </td>
                         <td class="text-nowrap text-center">
