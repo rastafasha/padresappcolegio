@@ -7,4 +7,5 @@ export class Calificacion {
     materia!:Materia;
     grade!:number;
     anio_escolar!:string;
+    created_at!:Date;
 }

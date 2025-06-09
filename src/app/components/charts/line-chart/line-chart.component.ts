@@ -12,7 +12,7 @@ export class LineChartComponent implements OnChanges {
   @Input() calificaciones: Calificacion[] | undefined;
 
   ngOnChanges(changes: SimpleChanges) {
-    // console.log('ngOnChanges called with calificaciones:', this.calificaciones);
+    console.log('ngOnChanges called with calificaciones:', this.calificaciones);
     if (changes['calificaciones'] && this.calificaciones && this.calificaciones.length > 0) {
       this.createChart();
     }
@@ -52,17 +52,14 @@ export class LineChartComponent implements OnChanges {
         if (!grouped[materiaName]) {
           grouped[materiaName] = new Array(12).fill(0);
         }
-        // Since Calificacion model lacks month info, we will fill data array sequentially for each materia
         const dataArray = grouped[materiaName];
-        // Find first zero index to insert grade
-        const firstZeroIndex = dataArray.indexOf(0);
-        if (firstZeroIndex !== -1) {
-          dataArray[firstZeroIndex] = calificacion.grade || 0;
-        }
+        // Use created_at date to get month index
+        const createdAt = calificacion['created_at'] ? new Date(calificacion['created_at']) : null;
+        const monthIndex = createdAt ? createdAt.getMonth() : 0;
+        dataArray[monthIndex] = calificacion.grade || 0;
       });
     }
 
-    // Build datasets array
     const datasets = Object.keys(grouped).map((materiaName) => ({
       label: materiaName,
       data: grouped[materiaName],
