@@ -7,7 +7,7 @@
               <li>
                   <a href="#" onclick="return false;" [ngClass]="{'active': option_selected == 1}" (click)="optionSelected(1)">Editar</a>
               </li>
-              <li>
+              <li *ngIf="profileSeleccionado">
                   <a href="#" onclick="return false;" [ngClass]="{'active': option_selected == 2}" (click)="optionSelected(2)">Rendimiento</a>
               </li>
           </ul>
