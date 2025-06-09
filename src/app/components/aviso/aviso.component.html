@@ -8,5 +8,7 @@
     <div class="alert alert-primary" *ngIf="profile " >
         <p style="margin: 0; padding: 0;">{{'aviso.Welcome'|translate}} </p>
         <p style="margin: 0; padding: 0;"><strong>{{profile.name}}!</strong></p>
+        <span class="badge bg-success" *ngIf="profile.status === 'ACTIVE'">Activo</span>
+                            <span class="badge bg-danger" *ngIf="profile.status === 'INACTIVE'">Inactivo</span>
     </div>
 </div>

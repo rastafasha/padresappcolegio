@@ -60,7 +60,7 @@ export class CalendarioTComponent {
       .subscribe((resp: any) => {
         this.calendariotareas = resp.calendariotareas;
         this.isLoading = false;
-        console.log(resp);
+        // console.log(resp);
       });
       
       this.getMaestro(maestro);
@@ -70,17 +70,17 @@ export class CalendarioTComponent {
     this.userService.showUser(maestro).subscribe((resp:any)=>{
       this.maestro = resp.user;
       this.materia = resp.user.materia
-      console.log(resp);
+      // console.log(resp);
     })
   }
 
   openPaymentsModal(cal: CalendarioTareas): void {
     this.selectedCalendario = cal;
-    console.log(cal);
+    // console.log(cal);
   }
 
   openNewModal(cal: CalendarioTareas): void {
     this.selectedStudentProfile = cal;
-    console.log(cal);
+    // console.log(cal);
   }
 }
