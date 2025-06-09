@@ -8,13 +8,14 @@
 <br>
 
 <app-loading *ngIf="isLoading"></app-loading>
-<div class="card border-radio" *ngIf="!isLoading">
+<div class="card border-radio" *ngIf="!isLoading && maestro">
 
 
     <div class="card-body calendary">
         <div class="tope">
-            <h4>Maestro: {{maestro?.name}} {{maestro?.surname}}</h4>
+            <h4>Maestro: <br>{{maestro?.name}} {{maestro?.surname}}</h4>
             <p *ngIf="materia">Materia: {{materia?.name}}</p>
+            <p *ngIf="maestro?.grado">Grado: {{maestro?.grado}}</p>
         </div>
         <ul *ngFor="let cal of calendariotareas">
             <li>

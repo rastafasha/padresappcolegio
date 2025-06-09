@@ -31,7 +31,7 @@ export class CalendarioTComponent {
   maestro!: Usuario;
   maestro_id!: Usuario;
   materia!: Materia;
-
+  grado!:Usuario;
   selectedStudentProfile!: CalendarioTareas;
   selectedCalendario!: CalendarioTareas;
 

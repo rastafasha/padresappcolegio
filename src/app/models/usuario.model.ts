@@ -14,6 +14,7 @@ export class Usuario {
   token: string = "";
   is_active: number = 0;
   n_doc: number = 0;
+  grado: number = 0;
   created_at: string = "";
   avatar: string = "";
   // role?: 'SUPERADMIN' | 'ADMIN' | 'MEMBER' | 'GUEST';
