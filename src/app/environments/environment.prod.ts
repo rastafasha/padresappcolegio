@@ -7,8 +7,8 @@ export const environment = {
 
   //remoto
 
-  url_backend: 'https://malcolmcordova.com/backend-api-colegio/',
-    url_servicios: 'https://malcolmcordova.com/backend-api-colegio/public/api',
+  url_backend: 'https://backend-api-colegio-jqy7.onrender.com/',
+    url_servicios: 'https://backend-api-colegio-jqy7.onrender.com/public/api',
     url_frontend: 'https://malcolmcordova.com/app-padres-app/',
-    url_media: 'https://malcolmcordova.com/backend-api-colegio/storage/app/public/',
+    url_media: 'https://backend-api-colegio-jqy7.onrender.com/storage/app/public/',
 };
