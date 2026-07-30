@@ -40,7 +40,7 @@ export class TasabcvService {
 
     getTasasBCV(page: number, size: number) {
   // Envía los parámetros de paginación para que Laravel responda rápido
-  return this.http.get(`${baseUrl}/api/tasabcvs?page=${page}&per_page=${size}`);
+  return this.http.get(`${baseUrl}/tasabcvs?page=${page}&per_page=${size}`);
 }
   
     getTasaBcv(tasabcv: any) {
