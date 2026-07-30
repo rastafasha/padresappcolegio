@@ -108,7 +108,7 @@ export class PagarComponent implements OnInit {
   }
 
   getUltimoPrecioTasaBcv() {
-    this.tasaBcvService.getTasas().subscribe((resp: any) => {
+    this.tasaBcvService.getTasasBCV(1, 10).subscribe((resp: any) => {
       this.precio_dia = resp[0].precio_dia;
       this.precio_fecha = resp[0].created_at;
     });
