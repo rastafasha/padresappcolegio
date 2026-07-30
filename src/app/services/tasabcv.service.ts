@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { Tasabcv } from '../models/tasabcba';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 const baseUrl = environment.url_servicios;
 
@@ -30,13 +30,18 @@ export class TasabcvService {
     }
   
   
-    getTasas() {
-      const url = `${baseUrl}/tasabcvs`;
-      return this.http.get<any>(url,this.headers)
-        .pipe(
-          map((resp:{ok: boolean, tasabcvs: Tasabcv}) => resp.tasabcvs)
-        )
-    }
+    // getTasas() {
+    //   const url = `${baseUrl}/tasabcvs`;
+    //   return this.http.get<any>(url,this.headers)
+    //     .pipe(
+    //       map((resp:{ok: boolean, tasabcvs: Tasabcv}) => resp.tasabcvs)
+    //     )
+    // }
+
+    getTasasBCV(page: number, size: number) {
+  // Envía los parámetros de paginación para que Laravel responda rápido
+  return this.http.get(`${baseUrl}/api/tasabcvs?page=${page}&per_page=${size}`);
+}
   
     getTasaBcv(tasabcv: any) {
       const url = `${baseUrl}/tasabcv/show/${tasabcv}`;

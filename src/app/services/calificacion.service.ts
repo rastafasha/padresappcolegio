@@ -3,7 +3,7 @@ import { Calificacion } from '../models/calificacion';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { Materia } from '../models/materia';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 const baseUrl = environment.url_servicios;
 
 @Injectable({

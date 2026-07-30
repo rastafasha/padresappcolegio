@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { AuthService } from './auth.service';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { Parent } from '../models/parents';
 const baseUrl = environment.url_servicios;
 

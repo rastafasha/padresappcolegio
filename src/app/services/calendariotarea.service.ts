@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CalendarioTareas } from '../models/calendariotarea';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 const baseUrl = environment.url_servicios;
 
 @Injectable({

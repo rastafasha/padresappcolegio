@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, of, tap } from 'rxjs';
 import { RegisterForm } from '../auth/interfaces/register-form.interface';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 const url_servicios = environment.url_servicios;
 

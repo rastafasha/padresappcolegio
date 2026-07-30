@@ -1,6 +1,6 @@
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Examen } from '../../models/examen';
 import { Student } from '../../models/student';
 import { ExamenService } from '../../services/examen.service';

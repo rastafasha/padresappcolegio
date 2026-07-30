@@ -4,7 +4,7 @@ import { HeaderComponent } from '../../../shared/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { HttpClient, HttpBackend } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { Payment } from '../../../models/payment';
 import { Student } from '../../../models/student';
 import { PaymentService } from '../../../services/payment.service';

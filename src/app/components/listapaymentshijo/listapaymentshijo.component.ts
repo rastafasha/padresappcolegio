@@ -1,6 +1,6 @@
 import { HttpClient, HttpBackend } from '@angular/common/http';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Payment } from '../../models/payment';
 import { Student } from '../../models/student';
 import { ParentService } from '../../services/parent-service.service';
